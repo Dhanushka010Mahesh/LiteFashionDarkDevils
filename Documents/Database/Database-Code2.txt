@@ -1,0 +1,22 @@
+create table cart(
+ S_cartId varchar(15) primary key ,
+ ProductId varchar(15) ,
+ CustermerId varchar(15) ,
+ P_name varchar(75) ,
+ P_price decimal(9,2) ,
+ P_image1 varchar(40) ,
+ S_date datetime default current_timestamp ,
+ S_qty int ,
+ S_size varchar(30) ,
+
+ foreign key(ProductId) references clothproduct(ProductId) ,
+ foreign key(CustermerId) references customers(CustermerId)
+);
+
+
+insert into cart(S_cartId,ProductId,CustermerId,P_name,P_price,P_image1,S_qty,S_size) 
+values( 'S0001','P002', 'U002', 'Mahesh', 2850 , 'pImage1.jpg' ,4 , 'Small');
+
+
+update cart set P_name='White T-Shirt' where S_cartId='S0001';
+

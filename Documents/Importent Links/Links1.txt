@@ -1,0 +1,23 @@
+0https://app.diagrams.net/
+
+https://miro.com/app/board/uXjVLW2ZovA=/
+
+https://excalidraw.com/
+
+https://app.diagrams.net/
+
+https://github.com/fullstack-superdev/MVC-Ecommerce-Project
+
+
+https://github.com/Dhanushka010Mahesh/DarkDevilsLiteFashion.git
+
+
+https://github.com/Dhanushka010Mahesh/GroupProject_Dark_Devils.git
+https://github.com/Dhanushka010Mahesh/one-by-one-CMS.git
+https://github.com/Dhanushka010Mahesh/GroupProjectSample.git
+https://github.com/Dhanushka010Mahesh/Dark_Devils_GroupProject.git
+
+git rm --cached "Documents/Project Copy/DarkDevilsLiteFashion2.rar"
+git commit -m "Remove large file DarkDevilsLiteFashion2.rar from history"
+
+

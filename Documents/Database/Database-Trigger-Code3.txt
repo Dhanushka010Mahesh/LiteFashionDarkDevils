@@ -1,0 +1,76 @@
+-- Trigger for Customer table to auto-increment CustomerId with "U" prefix
+DELIMITER //
+CREATE TRIGGER before_insert_customer
+BEFORE INSERT ON customers
+FOR EACH ROW
+BEGIN
+    DECLARE max_id INT;
+    DECLARE new_id VARCHAR(15);
+
+    -- Find the max numeric part of the ID, then increment it
+    SELECT COALESCE(MAX(CAST(SUBSTRING(CustermerId, 2) AS UNSIGNED)), 0) + 1 INTO max_id FROM customers;
+    SET new_id = CONCAT('U', LPAD(max_id, 3, '0'));
+
+    -- Set the new ID to the auto-incremented value
+    SET NEW.CustermerId = new_id;
+END;
+//
+DELIMITER ;
+
+-- Trigger for Product table to auto-increment ProductId with "P" prefix
+DELIMITER //
+CREATE TRIGGER before_insert_product
+BEFORE INSERT ON clothproduct
+FOR EACH ROW
+BEGIN
+    DECLARE max_id INT;
+    DECLARE new_id VARCHAR(15);
+
+    -- Find the max numeric part of the ID, then increment it
+    SELECT COALESCE(MAX(CAST(SUBSTRING(ProductId, 2) AS UNSIGNED)), 0) + 1 INTO max_id FROM clothproduct;
+    SET new_id = CONCAT('P', LPAD(max_id, 3, '0'));
+
+    -- Set the new ID to the auto-incremented value
+    SET NEW.ProductId = new_id;
+END;
+//
+DELIMITER ;
+
+-- Trigger for Cart table to auto-increment S_cartId with "S" prefix
+DELIMITER //
+CREATE TRIGGER before_insert_cart
+BEFORE INSERT ON cart
+FOR EACH ROW
+BEGIN
+    DECLARE max_id INT;
+    DECLARE new_id VARCHAR(15);
+
+    -- Find the max numeric part of the ID, then increment it
+    SELECT COALESCE(MAX(CAST(SUBSTRING(S_cartId, 2) AS UNSIGNED)), 0) + 1 INTO max_id FROM cart;
+    SET new_id = CONCAT('S', LPAD(max_id, 4, '0'));
+
+    -- Set the new ID to the auto-incremented value
+    SET NEW.S_cartId = new_id;
+END;
+//
+DELIMITER ;
+
+
+-- Trigger for Category table to auto-increment CategoryId with "C" prefix
+DELIMITER //
+CREATE TRIGGER before_insert_category
+BEFORE INSERT ON category
+FOR EACH ROW
+BEGIN
+    DECLARE max_id INT;
+    DECLARE new_id VARCHAR(15);
+
+    -- Find the max numeric part of the ID, then increment it
+    SELECT COALESCE(MAX(CAST(SUBSTRING(CategoryId, 2) AS UNSIGNED)), 0) + 1 INTO max_id FROM category;
+    SET new_id = CONCAT('C', LPAD(max_id, 3, '0'));
+
+    -- Set the new ID to the auto-incremented value
+    SET NEW.CategoryId = new_id;
+END;
+//
+DELIMITER ;

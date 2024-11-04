@@ -1,0 +1,76 @@
+create database darkDevils;
+use darkDevils;
+
+create table customers(
+CustermerId varchar(15) primary key ,
+C_username varchar(70) unique ,
+C_fullname varchar(150) ,
+C_email varchar(100) , 
+C_hashpassword varchar(50) , 
+C_mobile varchar(15) ,
+C_address varchar(150) ,  
+C_image varchar(50) default "cImage.jpg" ,
+C_status char(5) default 1
+);
+
+create table clothproduct(
+ProductId varchar(15) primary key ,
+P_name varchar(75) unique,
+P_categoryId varchar(75) ,
+P_price decimal(9,2) ,
+P_quantity int default 1,
+P_image1 varchar(40) default "pImage1.jpg" ,
+P_image2 varchar(40) default "pImage2.jpg" ,
+P_image3 varchar(40) default "pImage3.jpg" ,
+P_image4 varchar(40) default "pImage4.jpg" ,
+P_description varchar(200) ,
+P_small char(1) ,
+P_medium char(1) , 
+P_large char(1) ,
+P_extraLarge char(1) ,
+P_status varchar(5) default 1,
+foreign key(P_categoryId) references category(CategoryId)
+);
+
+create table category(
+CategoryId varchar(15) primary key,
+C_name varchar(50) unique,
+C_icon varchar(40) default "pIcon.jpg"
+);
+
+
+select * from category;
+
+insert into category(CategoryId,C_name,C_icon) values ("C003","Kids","pIcon.jpg");
+
+
+insert into clothproduct(ProductId,P_name,P_categoryId,P_price,P_quantity,P_image1,P_image2,P_image3,P_image4,P_description,P_small,P_medium,P_large,P_extraLarge,P_status)
+values ("P003","Emerald Long Sleeve Formal Regular Fit Shirt","C001",1320,1,"pImage1.jpg","pImage2.jpg","pImage3.jpg","pImage4.jpg","Please bear in mind that the photo may be slightly different from the actual item in terms of color due to lighting conditions or the display used to view Wash And Care: Hand wash with cold water, Wash inside out dark colors separately, Dry in a shade","0","0","1","1","1");
+
+
+insert into clothproduct(ProductId,P_name,P_categoryId,P_price,P_description,P_small,P_medium,P_large,P_extraLarge)
+values ("P004","Akasi High Waist WW Pant","C002",980,"Model Height 5 6, wearing size 30 Please bear in mind that the photo may be slightly different from the actual item in terms of colour due to lighting conditions or the display used to view   Wash And Care : Hand wash with cold water, Wash inside out dark colors separately, Dry in a shade","1","1","1","0");
+
+insert into clothproduct(ProductId,P_name,P_categoryId,P_price,P_description,P_small,P_medium,P_large,P_extraLarge)
+values ("P007","Lily Printed Back Criss Cross Frock","C003",720,"Model Height 3 10, Age 7Y Please bear in mind that the photo may be slightly different from the actual item in terms of colour due to lighting conditions or the display used to view","1","1","1","0");
+
+
+update clothproduct set P_medium='1',P_extraLarge='1' where ProductId='P008';
+
+alter table category add CategoryInfo varchar(200);
+update category set CategoryInfo="Shop our kids collection for comfortable, playful, and durable clothing thats perfect for every adventure. From vibrant t-shirts and cozy hoodies to durable jeans and cute dresses, our kids category is filled with styles designed for both boys and girls. Prioritizing quality and comfort, our clothing is made from soft, kid-friendly fabrics that withstand daily wear and tear. With fun colors, creative patterns, and character-themed designs, our pieces are loved by kids and approved by parents. Whether for playtime, school, or special occasions, find trendy and affordable outfits that bring out your childs unique personality." where CategoryId='C003';
+
+insert into customers(CustermerId,C_username,C_fullname,C_email,C_hashpassword,C_mobile,C_address,C_image,C_status)
+values ("U001","Dhanushka0123","KGDME Jayarathna.","Dhanushka0123mahesh@gmail.com","f2134bcf234556aaaAbB","0766640384","No 54/1 Marawanagoda","cImage.jpg",'1');
+
+insert into customers(CustermerId,C_username,C_fullname,C_email,C_hashpassword,C_mobile,C_address,C_image,C_status)
+values ("U002","Mahesh123","SSD Chathuranga.","php@gmail.com","$2y$10$V2CwOOM8yoeFWio.JgyzK.82vSaY8uhsYvt32IHIBzLqGHTN/xROe","0706540384","No 34 kurunagala","cImage.jpg",'1');
+
+
+alter table customers modify column C_hashpassword varchar(100);
+
+update customers set C_hashpassword='$10$L2hfHBmxQX68iNa807hMCuQEYO8T8g8ysEnvs1idJjWdtJSOcSC8C'
+where CustermerId='U002';
+
+
+
