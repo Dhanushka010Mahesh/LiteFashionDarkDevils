@@ -25,7 +25,7 @@
         
         <div class="flex p-5 text-xl text-sky-600 gap-10">
         
-            <i onclick="popup()" href="javascript:void(0)" ><?php echo ((isset($_SESSION['username']))?$_SESSION['username']:'Login'); ?></i>
+            <i onclick="popup()" href="javascript:void(0)" class="cursor-pointer"><?php echo ((isset($_SESSION['username']))?$_SESSION['username']:'Login'); ?></i>
             <a onclick="popup()" href="javascript:void(0)"><img src="http://localhost/LiteFashionDarkDevils/user/layout/images/profiles/<?php echo ((isset($_SESSION['username']))?$_SESSION['image']:'cImage2.png'); ?>" 
             class="" width="25px" height="20px" alt="Profile"></a>
             <?php if(isset($_SESSION['username'])) : ?>    

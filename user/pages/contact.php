@@ -1,3 +1,37 @@
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
+$dotenv->load();
+
+include '../includes/config.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+  $name = htmlspecialchars($_POST['name']);
+  $email = htmlspecialchars($_POST['email']);
+  $subject = htmlspecialchars($_POST['subject']);
+  $message = htmlspecialchars($_POST['message']);
+  $store_email = 'litefashion256@gmail.com';
+
+  $resendApiKey = $_ENV['RESEND_API_KEY'];
+  $resend = Resend::client($resendApiKey);
+
+  $resend->emails->send([
+    "from" => "litefashion@zhake.live",
+    "to" => $store_email,
+    "subject" => $subject,
+    "html" => "
+            <h2>Message from: $name</h2>
+            <p><strong>Email:</strong> $email</p>
+            <p><strong>Subject:</strong> $subject</p>
+            <p><strong>Message:</strong></p>
+            <p>$message</p>"
+  ]);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
