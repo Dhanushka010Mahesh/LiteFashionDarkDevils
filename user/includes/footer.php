@@ -1,7 +1,7 @@
 <footer class="shadow bg-gray-900 mt-12 py-5">
     <div class="w-full max-w-screen-xl mx-auto py-4">
         <div class="sm:flex sm:items-center sm:justify-between">
-            <img src="/lite_fashion/user/layout/images/lite_fashion.png" class="w-[160px]" alt="Logo" />
+            <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/lite_fashion.png" class="w-[160px]" alt="Logo" />
             <ul
                 class="flex flex-wrap items-center mb-6 text-base font-semibold text-gray-500 sm:mb-0">
                 <li>

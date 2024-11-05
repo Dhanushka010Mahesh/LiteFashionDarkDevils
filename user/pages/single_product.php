@@ -63,7 +63,6 @@
 
   <?php
   if(isset($_GET['id'])){
-    $isCartAdded=null;
     if(isset($_SESSION['custormerId'])){
       $isCartAdded=$connection->query("select * from cart where ProductId='{$_GET['id']}' and CustermerId='{$_SESSION['custormerId']}'");
       $isCartAdded->execute();
@@ -133,12 +132,15 @@
       </select>
       <input type="number" name="P_qty" value="<?php echo $oneClothData->P_quantity; ?>"
         class="form-control w-12 focus:outline-none border-slate-400 rounded-sm border-2 p-1 mr-3" required />
-      
-      <?php if($isCartAdded && $isCartAdded->rowCount()>0) : ?>
+      <?php if(isset($_SESSION['username'])) : ?>
+      <?php if($isCartAdded->rowCount()>0) : ?>
         
         <button class="btn-insert py-2 px-5 bg-sky-500 text-white rounded-sm" type="submit" name="submit" disabled>Added to Cart</button>
       <?php else : ?> 
         <button class="btn-insert py-2 px-5 bg-sky-500 text-white rounded-sm" type="submit" name="submit">Add to Cart</button>
+      <?php endif; ?>
+      <?php else: ?>
+        <h5 style="color: red;">Frist login website</h5>
       <?php endif; ?>
       
       </form>
