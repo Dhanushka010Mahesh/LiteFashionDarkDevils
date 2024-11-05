@@ -2,7 +2,7 @@
   require_once ('../includes/config.php');
   session_start();
   if(isset($_SESSION['username'])){
-    echo "<script> window.location.href='http://localhost/DarkDevilsLiteFashion/user/'; </script>";
+    echo "<script> window.location.href='http://localhost/LiteFashionDarkDevils/user/'; </script>";
   }
 
 
@@ -30,14 +30,14 @@
                  $_SESSION['custormerId']=$fetchLog['CustermerId'];
                  $_SESSION['Full name']=$fetchLog['C_fullname'];
                 //echo "<script>alert('succuss');</script>";
-                echo "<script> window.location.href='http://localhost/DarkDevilsLiteFashion/user/'; </script>";
+                echo "<script> window.location.href='http://localhost/LiteFashionDarkDevils/user/'; </script>";
 
 
             }else{
                 //echo password_hash("12345",PASSWORD_DEFAULT);
                 //echo password_hash(12345,PASSWORD_DEFAULT);
                 echo "<script>alert('Missing value');</script>";
-                echo "<script> window.location.href='http://localhost/DarkDevilsLiteFashion/user/'; </script>";
+                echo "<script> window.location.href='http://localhost/LiteFashionDarkDevils/user/'; </script>";
                 // $dd=password_hash("7898",PASSWORD_DEFAULT);
                 // if(password_verify(trim("7898"),trim($dd))){
                 //   echo "<script>alert('1');</script>";
@@ -45,7 +45,7 @@
             }
         }else{
             echo "<script>alert('invalid');</script>";
-            echo "<script> window.location.href='http://localhost/DarkDevilsLiteFashion/user/'; </script>";
+            echo "<script> window.location.href='http://localhost/LiteFashionDarkDevils/user/'; </script>";
 
         }
     }

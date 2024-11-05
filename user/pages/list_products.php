@@ -47,7 +47,7 @@
       <div
         class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
         onclick="window.location.href='single_product.php?id=<?php echo ($category->ProductId);?>'">
-        <img src="http://localhost/DarkDevilsLiteFashion/user/layout/images/products/<?php echo $category->P_image1; ?>" alt="" />
+        <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $category->P_image1; ?>" alt="" />
         <div class="flex justify-between py-3 relative">
           <div class="px-2">
             <span class="text-lg text-slate-500">adidas</span>
