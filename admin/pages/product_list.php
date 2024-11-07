@@ -10,7 +10,7 @@
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-  <link rel="stylesheet" href="http://localhost/DarkDevilsLiteFashion/admin/layout/css/styles.css" />
+  <link rel="stylesheet" href="http://localhost/LiteFashionDarkDevils/admin/layout/css/styles.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .content {
@@ -260,7 +260,7 @@
     </form>
   </div>
 
-  <script src="http://localhost/DarkDevilsLiteFashion/admin/layout/js/script.js"></script>
+  <script src="http://localhost/LiteFashionDarkDevils/admin/layout/js/script.js"></script>
   <script>
     function showContent(contentId) {
       // Hide all content sections

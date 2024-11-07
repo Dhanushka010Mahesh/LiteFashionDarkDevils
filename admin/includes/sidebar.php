@@ -1,6 +1,6 @@
 <section class="w-64 bg-gray-800 text-white h-screen fixed top-0 left-0 z-10">
     <div class="flex flex-col items-center justify-center mt-5">
-        <a href="http://localhost/DarkDevilsLiteFashion/admin/dashboard.php"><img src="http://localhost/DarkDevilsLiteFashion/admin/layout/images/lite_fashion.png" class="w-40" alt="logo"></a>
+        <a href="http://localhost/LiteFashionDarkDevils/admin/dashboard.php"><img src="http://localhost/LiteFashionDarkDevils/admin/layout/images/lite_fashion.png" class="w-40" alt="logo"></a>
         <p class="text-gray-300 font-semibold text-sm">Admin Dashboard</p>
     </div>
     <div class="p-6 flex flex-col justify-center text-gray-200">

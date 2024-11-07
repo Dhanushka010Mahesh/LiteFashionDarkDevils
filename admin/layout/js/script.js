@@ -3,42 +3,42 @@ $(document).ready(function () {
   $('#add-product-link').click(function (event) {
     event.preventDefault();
     $('#content-container').load(
-      'http://localhost/DarkDevilsLiteFashion/admin/pages/add_product.php'
+      'http://localhost/LiteFashionDarkDevils/admin/pages/add_product.php'
     );
   });
 
   $('#product-list-link').click(function (event) {
     event.preventDefault();
     $('#content-container').load(
-      'http://localhost/DarkDevilsLiteFashion/admin/pages/product_list.php'
+      'http://localhost/LiteFashionDarkDevils/admin/pages/product_list.php'
     );
   });
 
   $('#order-list-link').click(function (event) {
     event.preventDefault();
     $('#content-container').load(
-      'http://localhost/DarkDevilsLiteFashion/admin/pages/order_list.php'
+      'http://localhost/LiteFashionDarkDevils/admin/pages/order_list.php'
     );
   });
 
   $('#feedback-link').click(function (event) {
     event.preventDefault();
     $('#content-container').load(
-      'http://localhost/DarkDevilsLiteFashion/admin/pages/feedback.php'
+      'http://localhost/LiteFashionDarkDevils/admin/pages/feedback.php'
     );
   });
 
   $('#report-link').click(function (event) {
     event.preventDefault();
     $('#content-container').load(
-      'http://localhost/DarkDevilsLiteFashion/admin/pages/report.php'
+      'http://localhost/LiteFashionDarkDevils/admin/pages/report.php'
     );
   });
 
   // $('#profile').click(function (event) {
   //   event.preventDefault();
   //   $('#content-container').load(
-  //     'http://localhost/DarkDevilsLiteFashion/admin/pages/profile.php'
+  //     'http://localhost/LiteFashionDarkDevils/admin/pages/profile.php'
   //   );
   // });
 });
