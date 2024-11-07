@@ -22,12 +22,21 @@
       <h2 class="text-3xl font-bold text-slate-800 mb-5">Profile Information</h2>
       <form class="space-y-5">
         <div>
-          <label for="username" class="block text-gray-700 font-medium">Username</label>
+          <label for="username" class="block text-gray-700 font-medium">Full Name</label>
           <input
             type="text"
             id="username"
             class="block w-full p-3 mt-1 text-gray-900 border border-gray-300 rounded-lg shadow-sm bg-gray-50"
             placeholder="Alex Martin"
+            required />
+        </div>
+        <div>
+          <label for="username" class="block text-gray-700 font-medium">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="block w-full p-3 mt-1 text-gray-900 border border-gray-300 rounded-lg shadow-sm bg-gray-50"
+            placeholder="alex_martin"
             required />
         </div>
         <div>
@@ -63,9 +72,7 @@
       <ul class="space-y-5">
         <li class="flex items-center justify-between">
           <span class="text-lg font-medium text-gray-700">Change Password</span>
-          <button class="py-2 px-4 text-sm font-medium text-white bg-sky-500 rounded-lg hover:bg-sky-700 transition">
-            Update
-          </button>
+          <a class="py-2 px-4 text-sm font-medium text-white bg-sky-500 rounded-lg hover:bg-sky-700 transition" href="http://localhost/LiteFashionDarkDevils/user/pages/auth/forgot_password_form.php">Update</a>
         </li>
         <li class="flex items-center justify-between">
           <span class="text-lg font-medium text-gray-700">Address Details</span>
