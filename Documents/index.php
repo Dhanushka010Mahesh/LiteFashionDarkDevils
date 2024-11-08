@@ -1,3 +1,3 @@
 <?php
-	echo "<script> window.location.href='http://localhost/DarkDevilsLiteFashion/user/'; </script>";
+	echo "<script> window.location.href='http://localhost/LiteFashionDarkDevils/user/'; </script>";
 ?>
