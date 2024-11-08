@@ -1,15 +1,15 @@
+<?php
+require_once '../includes/config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- header -->
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lite Fashion Admin Panel</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <link rel="stylesheet" href="http://localhost/LiteFashionDarkDevils/admin/layout/css/styles.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -24,8 +24,6 @@
 </head>
 
 <body>
-  <hr>
-  <!-- Initial Display Section -->
   <div id="displayContent" class="content active">
     <div class="overflow-x-auto">
       <h1 class="text-2xl font-bold mb-4">Product List</h1>
@@ -37,7 +35,6 @@
             <th class="py-2 px-4 bg-gray-800 text-white">Product Name</th>
             <th class="py-2 px-4 bg-gray-800 text-white">Category</th>
             <th class="py-2 px-4 bg-gray-800 text-white">Price</th>
-            <th class="py-2 px-4 bg-gray-800 text-white">Description</th>
             <th class="py-2 px-4 bg-gray-800 text-white">Quantity</th>
             <th class="py-2 px-4 bg-gray-800 text-white">Sizes</th>
             <th class="py-2 px-4 bg-gray-800 text-white">Status</th>
@@ -45,36 +42,40 @@
           </tr>
         </thead>
         <tbody class="text-gray-700">
-          <tr>
-            <td class="border px-4 py-2">1</td>
-            <td class="border px-4 py-2">
-              <img
-                src="path_to_image1.jpg"
-                alt="Image"
-                class="w-16 h-16 object-cover rounded items-center" />
-            </td>
-            <td class="border px-4 py-2">Product name</td>
-            <td class="border px-4 py-2">Category</td>
-            <td class="border px-4 py-2">Rs. 25.00</td>
-            <td class="border px-4 py-2">Description</td>
-            <td class="border px-4 py-2">10</td>
-            <td class="border px-4 py-2">S, M, L, XL</td>
-            <td class="border px-4 py-2">Active</td>
-            <td class="border px-4 py-2">
-              <div class="flex">
-                <button
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
-                  onclick="showContent('editContent')">
-                  Edit
-                </button>
-                <button
-                  class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded ml-2"
-                  onclick="deleteProduct(1)">
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
+          <?php
+          try {
+            $query = $connection->query("SELECT * FROM clothproduct");
+
+            while ($product = $query->fetch(PDO::FETCH_ASSOC)) {
+              $sizes = [];
+              if ($product['P_small']) $sizes[] = 'S';
+              if ($product['P_medium']) $sizes[] = 'M';
+              if ($product['P_large']) $sizes[] = 'L';
+              if ($product['P_extraLarge']) $sizes[] = 'XL';
+
+              echo "<tr>
+                <td class='border px-4 py-2'>{$product['ProductId']}</td>
+                <td class='border px-4 py-2'>
+                  <img src='http://localhost/LiteFashionDarkDevils/admin/uploads/{$product['P_image1']}' alt='Product Image' style='width: 50px; height: auto;' />
+                </td>
+                <td class='border px-4 py-2'>{$product['P_name']}</td>
+                <td class='border px-4 py-2'>{$product['P_categoryId']}</td>
+                <td class='border px-4 py-2'>Rs. {$product['P_price']}</td>
+                <td class='border px-4 py-2'>{$product['P_quantity']}</td>
+                <td class='border px-4 py-2'>" . implode(', ', $sizes) . "</td>
+                <td class='border px-4 py-2'>" . ($product['P_status'] == '1' ? 'Active' : 'Inactive') . "</td>
+                <td class='border px-4 py-2'>
+                  <div class='flex'>
+                    <button class='bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-3 rounded' onclick=\"showContent('editContent')\">Edit</button>
+                    <button class='bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded ml-2' onclick=\"deleteProduct({$product['ProductId']})\">Delete</button>
+                  </div>
+                </td>
+              </tr>";
+            }
+          } catch (PDOException $e) {
+            echo "<tr><td colspan='10' class='border px-4 py-2 text-red-500'>Error loading products</td></tr>";
+          }
+          ?>
         </tbody>
       </table>
     </div>
@@ -263,13 +264,14 @@
   <script src="http://localhost/LiteFashionDarkDevils/admin/layout/js/script.js"></script>
   <script>
     function showContent(contentId) {
-      // Hide all content sections
-      const allContent = document.querySelectorAll('.content');
-      allContent.forEach((content) => content.classList.remove('active'));
+      document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+      document.getElementById(contentId).classList.add('active');
+    }
 
-      // Show the selected content section
-      const selectedContent = document.getElementById(contentId);
-      selectedContent.classList.add('active');
+    function deleteProduct(productId) {
+      if (confirm('Are you sure you want to delete this product?')) {
+        window.location.href = `delete-product.php?ProductId=${productId}`;
+      }
     }
   </script>
 </body>

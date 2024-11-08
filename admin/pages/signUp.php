@@ -8,7 +8,7 @@
     <div class="popup-contentLog bg-white rounded-xl shadow-lg w-1/3 my-10">
         <div class="p-10 space-y-4">
             <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 text-center">
-                Create a New Account
+                Create Admin Account
             </h1>
             <form class="space-y-4 md:space-y-6" method="POST" action="signup_data_send.php">
 
