@@ -115,13 +115,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="mt-8">
                     <h2 class="text-xl mb-3 text-sky-600 font-semibold text-left">PAYMENT METHOD</h2>
                     <div class="flex gap-3 items-start">
-                        <div class="flex items-center gap-3 border p-2 px-3 cursor-pointer rounded-md">
-                            <input type="radio" name="payment_method" value="online" class="cursor-pointer" />
-                            <span class="text-gray-500 text-sm font-medium mx-4">ONLINE PAYMENT</span>
+                        <div class="flex items-center gap-3 border p-2 px-3 cursor-pointer rounded-md hover:bg-sky-100">
+                            <input type="radio" name="payment_method" value="online" id="payment-online" class="cursor-pointer" />
+                            <label for="payment-online" class="text-gray-500 text-sm font-medium mx-4">ONLINE PAYMENT</label>
                         </div>
-                        <div class="flex items-center gap-3 border p-2 px-3 cursor-pointer rounded-md">
-                            <input type="radio" name="payment_method" value="cod" class="cursor-pointer" />
-                            <span class="text-gray-500 text-sm font-medium mx-4">CASH ON DELIVERY</span>
+                        <div class="flex items-center gap-3 border p-2 px-3 cursor-pointer rounded-md hover:bg-sky-100">
+                            <input type="radio" name="payment_method" value="cod" id="payment-cod" class="cursor-pointer" />
+                            <label for="payment-cod" class="text-gray-500 text-sm font-medium mx-4">CASH ON DELIVERY</label>
                         </div>
                     </div>
                     <div class="w-full text-start mt-8">
