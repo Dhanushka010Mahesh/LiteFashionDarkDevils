@@ -16,3 +16,8 @@ https://github.com/Dhanushka010Mahesh/GroupProjectSample.git
 git rm --cached "Documents/Project Copy/DarkDevilsLiteFashion2.rar"
 git commit -m "Remove large file DarkDevilsLiteFashion2.rar from history"
 
+https://www.youtube.com/watch?v=P8YuWEkTeuE&list=PL9bD98LkBR7P8MYh0RzNSHgeVNTA8g0nB
+https://www.youtube.com/watch?v=1KxD8J8CAFg&list=PLGnjFGZoHNr0dYY6NnpB0VA31NmoIe1sZ&index=17&pp=gAQBiAQB
+https://stripe.com/
+https://resend.com/emails
+
