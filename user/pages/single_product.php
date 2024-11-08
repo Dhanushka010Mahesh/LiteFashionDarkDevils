@@ -74,28 +74,28 @@
   <section id="product-details" class="py-8 px-40 mt-5 flex">
     <div class="w-[40%] mr-12">
       <img
-        src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $oneClothData->P_image1; ?>"
+        src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $oneClothData->P_image1; ?>"
         width="100%"
         class="mb-1"
         id="main-image" />
       <div class="flex justify-between gap-1">
         <img
-          src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $oneClothData->P_image1; ?>"
+          src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $oneClothData->P_image1; ?>"
           width="100%"
           class="cursor-pointer small-image" />
 
         <img
-          src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $oneClothData->P_image2; ?>"
+          src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $oneClothData->P_image2; ?>"
           width="100%"
           class="cursor-pointer small-image" />
 
         <img
-          src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $oneClothData->P_image3; ?>"
+          src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $oneClothData->P_image3; ?>"
           width="100%"
           class="cursor-pointer small-image" />
 
         <img
-          src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $oneClothData->P_image4; ?>"
+          src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $oneClothData->P_image4; ?>"
           width="100%"
           class="cursor-pointer small-image" />
       </div>
@@ -162,7 +162,7 @@
       <div
         class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
         onclick="window.location.href='single_product.php?id=<?php echo ($reletedCloth->ProductId);?>'">
-        <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $reletedCloth->P_image1; ?>" alt="" />
+        <img src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $reletedCloth->P_image1; ?>" alt="" />
         <div class="flex justify-between py-3 relative">
           <div class="px-2">
             <span class="text-lg text-slate-500">adidas</span>

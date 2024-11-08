@@ -49,7 +49,7 @@ if(!isset($_SESSION['username'])){
       <?php foreach($allCartItems as $cart) : ?>
       <div
         class="grid grid-cols-7 px-20 py-3 items-center text-center justify-items-center">
-        <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $cart->P_image1; ?>" alt="" class="w-20" />
+        <img src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $cart->P_image1; ?>" alt="" class="w-20" />
         <p><?php echo $cart->P_name; ?></p>
         <p class="pro_price"><?php echo $cart->P_price; ?></p>
         <input type="number" value="<?php echo $cart->S_qty; ?>" class=" pro_qty w-12 pl-2 border" />
