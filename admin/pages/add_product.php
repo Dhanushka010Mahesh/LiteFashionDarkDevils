@@ -64,7 +64,8 @@
                 name="P_quantity"
                 value="1"
                 class="w-full px-3 py-2 bg-white rounded-md border border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
-                required />
+                required
+                disabled />
             </div>
 
             <div class="mb-4">
@@ -169,6 +170,7 @@
               <select
                 id="P_status"
                 name="P_status"
+                disabled
                 class="w-full px-3 py-2 bg-white rounded-md border border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200">
                 <option value="1">Active</option>
                 <option value="0">Inactive</option>

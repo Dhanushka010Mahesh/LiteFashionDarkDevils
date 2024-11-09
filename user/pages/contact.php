@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p class="text-lg text-slate-700">LEAVE A MESSAGE</p>
         <h2 class="text-4xl font-bold pb-5">Let us know what you need</h2>
       </div>
-      <form action="" method="post" class="space-y-2">
+      <form id="postForm" class="space-y-2">
         <div>
           <label for="name" class="block mb-1 font-medium text-gray-900">Your Name</label>
           <input
@@ -132,11 +132,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             class="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 mb-4"
             placeholder="Leave a comment..."></textarea>
         </div>
-        <button
-          type="submit"
-          class="py-3 px-5 text-sm font-medium text-center text-white bg-sky-500 rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">
-          Send message
-        </button>
+        <div class="flex items-center mt-4 gap-6">
+          <button
+            type="submit"
+            name="submit"
+            class="py-3 px-5 font-medium text-center text-white bg-sky-500 rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">
+            Send message
+          </button>
+          <!-- Message -->
+          <h1 class="text-sky-500 font-semibold text-lg" id="show"></h1>
+        </div>
       </form>
     </div>
   </section>
@@ -144,6 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <!-- footer -->
   <?php include_once '../includes/footer.php' ?>
+
 
   <script src="../layout/js/script.js"></script>
 </body>

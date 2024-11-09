@@ -10,18 +10,18 @@
             <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 text-center">
                 Create Admin Account
             </h1>
-            <form class="space-y-4 md:space-y-6" method="POST" action="signup_data_send.php">
+            <form class="space-y-4 md:space-y-6" method="POST" action="http://localhost/LiteFashionDarkDevils/admin/pages/backend/sign-up.php">
 
                 <!-- Full Name -->
                 <div>
-                    <label for="fname" class="block mb-2 text-sm font-medium text-gray-900">Full Name</label>
-                    <input type="text" name="fname" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter your full name" required>
+                    <label for="fullName" class="block mb-2 text-sm font-medium text-gray-900">Full Name</label>
+                    <input type="text" name="fullName" id="fullName" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter your full name" required>
                 </div>
 
                 <!-- Username -->
                 <div>
-                    <label for="lname" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
-                    <input type="text" name="lname" id="lname" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter username" required>
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
+                    <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter username" required>
                 </div>
 
                 <!-- Email -->

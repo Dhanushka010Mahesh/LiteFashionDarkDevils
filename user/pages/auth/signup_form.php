@@ -46,7 +46,7 @@
                 <!-- Redirect to Sign In -->
                 <p class="text-sm font-light text-gray-500 text-center mt-5">
                     Already have an account?
-                    <a href="signin_form.php" class="font-medium text-primary-600 hover:underline">Sign In</a>
+                    <a href="http://localhost/LiteFashionDarkDevils/user/" class="font-medium text-primary-600 hover:underline">Sign In</a>
                 </p>
             </form>
         </div>
