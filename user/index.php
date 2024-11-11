@@ -2,15 +2,15 @@
 require_once('./includes/config.php');
 ?>
 <?php
-$categories1 = $connection->query("select * from clothProduct where P_status='1' and P_categoryId='C001'");
+$categories1 = $connection->query("select * from clothProduct where P_status='1' and P_categoryId='C001' LIMIT 4");
 $categories1->execute();
 $menCloth = $categories1->fetchAll(PDO::FETCH_OBJ);
 
-$categories2 = $connection->query("select * from clothProduct where P_status='1' and P_categoryId='C002'");
+$categories2 = $connection->query("select * from clothProduct where P_status='1' and P_categoryId='C002' LIMIT 4");
 $categories2->execute();
 $womenCloth = $categories2->fetchAll(PDO::FETCH_OBJ);
 
-$categories3 = $connection->query("select * from clothProduct where P_status='1' and P_categoryId='C003'");
+$categories3 = $connection->query("select * from clothProduct where P_status='1' and P_categoryId='C003' LIMIT 4");
 $categories3->execute();
 $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
 ?>
@@ -96,10 +96,10 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
 
 
 
-  <!-- feature products section -->
+  <!-- men products section -->
   <section id="feature-products" class="py-8 px-20 mt-5">
-    <h2 class="text-5xl font-bold">Men Category</h2>
-    <p class="text-lg text-slate-500">Summer Collection New Modern Design</p>
+    <h2 class="text-5xl font-bold  text-center">Men Category</h2>
+    <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
     <div class="flex justify-between py-5 flex-wrap">
       <?php foreach ($menCloth as $men) : ?>
         <div
@@ -133,10 +133,10 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
     </div>
   </section>
 
-  <!-- feature products section -->
-  <section id="feature-products" class="py-8 px-20 mt-5">
-    <h2 class="text-5xl font-bold">Women Category</h2>
-    <p class="text-lg text-slate-500">Summer Collection New Modern Design</p>
+  <!-- women products section -->
+  <section id="feature-products" class="py-8 px-20 mt-5">  text-center
+    <h2 class="text-5xl font-bold  text-center">Women Category</h2>
+    <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
     <div class="flex justify-between py-5 flex-wrap">
       <?php foreach ($womenCloth as $women) : ?>
         <div
@@ -170,10 +170,10 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
     </div>
   </section>
 
-  <!-- feature products section -->
+  <!-- kids products section -->
   <section id="feature-products" class="py-8 px-20 mt-5">
-    <h2 class="text-5xl font-bold">Kids Category</h2>
-    <p class="text-lg text-slate-500">Summer Collection New Modern Design</p>
+    <h2 class="text-5xl font-bold  text-center">Kids Category</h2>
+    <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
     <div class="flex justify-between py-5 flex-wrap">
       <?php foreach ($kidsCloth as $kids) : ?>
         <div

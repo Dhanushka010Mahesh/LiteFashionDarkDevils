@@ -5,19 +5,19 @@
             <ul
                 class="flex flex-wrap items-center mb-6 text-base font-semibold text-gray-500 sm:mb-0">
                 <li>
-                    <a href="#" class="hover:text-sky-200 me-4 md:me-6">Men</a>
+                    <a href="http://localhost/LiteFashionDarkDevils/user/pages/list_products.php" class="hover:text-sky-200 me-4 md:me-6">Men</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:text-sky-200 me-4 md:me-6">Women</a>
+                    <a href="http://localhost/LiteFashionDarkDevils/user/pages/list_products.php" class="hover:text-sky-200 me-4 md:me-6">Women</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:text-sky-200 me-4 md:me-6">Kids</a>
+                    <a href="http://localhost/LiteFashionDarkDevils/user/pages/list_products.php" class="hover:text-sky-200 me-4 md:me-6">Kids</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:text-sky-200 me-4 md:me-6">About</a>
+                    <a href="http://localhost/LiteFashionDarkDevils/user/pages/about.php" class="hover:text-sky-200 me-4 md:me-6">About</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:text-sky-200">Contact Us</a>
+                    <a href="http://localhost/LiteFashionDarkDevils/user/pages/contact.php" class="hover:text-sky-200">Contact Us</a>
                 </li>
             </ul>
         </div>

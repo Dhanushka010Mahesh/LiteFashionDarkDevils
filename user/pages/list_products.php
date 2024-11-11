@@ -89,7 +89,7 @@ include_once('../includes/header.php');
             <div class="mt-4">
               <span class="block text-gray-600"><?php echo $product['P_categoryId']; ?></span>
               <h3 class="text-lg font-semibold"><?php echo $product['P_name']; ?></h3>
-              <p class="text-red-400 font-bold">$<?php echo $product['P_price']; ?></p>
+              <p class="text-red-400 font-bold">Rs. <?php echo $product['P_price']; ?></p>
             </div>
           </div>
         <?php endforeach; ?>

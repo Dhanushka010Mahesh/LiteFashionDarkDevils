@@ -32,7 +32,7 @@ if (isset($_POST['email'])) {
                 $resend = Resend::client($resendApiKey);
 
                 $resend->emails->send([
-                    'from' => 'charith@zhake.live',
+                    'from' => 'litefashion@zhake.live',
                     'to' => [$email],
                     'subject' => 'Password Reset - Your OTP Code',
                     'html' => '<strong>Your OTP Code is: ' . $otpCode . '</strong>',

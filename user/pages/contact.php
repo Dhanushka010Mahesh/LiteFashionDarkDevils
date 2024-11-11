@@ -152,6 +152,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
   <script src="../layout/js/script.js"></script>
+  <script>
+    document.getElementById('postForm').addEventListener('submit', postName);
+
+    function postName(e) {
+      e.preventDefault();
+
+      let formData = new FormData(document.getElementById('postForm'));
+
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', '#', true);
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          document.getElementById('show').innerHTML = 'Message sent successfully';
+        } else {
+          console.error('Error in form submission');
+        }
+      };
+
+      xhr.send(formData);
+    }
+  </script>
 </body>
 
 </html>
