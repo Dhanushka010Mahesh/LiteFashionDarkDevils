@@ -63,7 +63,9 @@
               name="email"
               class="block w-full p-3 mt-1 text-gray-900 border border-gray-300 rounded-lg shadow-sm bg-gray-50"
               value="<?php echo $user->C_email; ?>"
-              required />
+              required
+              disabled
+              />
           </div>
           <div>
             <label for="phone" class="block text-gray-700 font-medium">Phone</label>
