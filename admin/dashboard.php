@@ -1,3 +1,22 @@
+<?php
+
+require_once 'includes/config.php';
+
+try {
+    // SQL query total products
+    $sqlProducts = "SELECT COUNT(*) FROM clothproduct";
+    $stmtProducts = $connection->query($sqlProducts);
+    $totalProducts = $stmtProducts->fetchColumn();
+
+    // SQL query total customers
+    $sqlCustomers = "SELECT COUNT(*) FROM customers";
+    $stmtCustomers = $connection->query($sqlCustomers);
+    $totalCustomers = $stmtCustomers->fetchColumn();
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,22 +65,22 @@
 
                 <main id="content-container" class="space-y-6">
                     <!-- Quick Stats -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
                         <div class="bg-blue-50 p-4 rounded-lg border border-blue-100 shadow-sm">
                             <h3 class="text-blue-600 font-semibold">Total Products</h3>
-                            <p class="text-2xl font-bold text-blue-600">245</p>
+                            <p class="text-2xl font-bold text-blue-600"><?php echo $totalProducts ?></p>
                         </div>
                         <div class="bg-green-50 p-4 rounded-lg border border-green-100 shadow-sm">
                             <h3 class="text-green-600 font-semibold">Total Orders</h3>
-                            <p class="text-2xl font-bold text-green-600">182</p>
+                            <p class="text-2xl font-bold text-green-600">...</p>
                         </div>
                         <div class="bg-purple-50 p-4 rounded-lg border border-purple-100 shadow-sm">
-                            <h3 class="text-purple-600 font-semibold">Total Users</h3>
-                            <p class="text-2xl font-bold text-purple-600">1,234</p>
+                            <h3 class="text-purple-600 font-semibold">Total Customers</h3>
+                            <p class="text-2xl font-bold text-purple-600"><?php echo $totalCustomers ?></p>
                         </div>
                         <div class="bg-red-50 p-4 rounded-lg border border-red-100 shadow-sm">
                             <h3 class="text-red-600 font-semibold">Revenue</h3>
-                            <p class="text-2xl font-bold text-red-600">Rs. 12,345</p>
+                            <p class="text-2xl font-bold text-red-600">Rs. ...</p>
                         </div>
                     </div>
 
