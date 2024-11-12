@@ -127,7 +127,7 @@
       <!-- submit -->
       <button
         type="submit"
-        name="submit2"
+        name="submit"
         class="block w-full py-3 px-5 text-white bg-sky-500 rounded-lg font-medium hover:bg-sky-700 transition">
         Save Changes
       </button>
