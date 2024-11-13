@@ -1,11 +1,26 @@
 <?php
+session_start();
+include_once '../includes/config.php';
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
 $dotenv->load();
 
-include '../includes/config.php';
+
+if (!isset($_SESSION['username'])) {
+    header('Location: http://localhost/LiteFashionDarkDevils/user/');
+    exit;
+}
+
+$customerId = $_SESSION['custormerId'];
+
+// Fetch existing delivery address
+$addressDataQuery = $connection->prepare("SELECT * FROM delivery_address WHERE CustermerId = :customerId LIMIT 1");
+$addressDataQuery->bindParam(':customerId', $customerId);
+$addressDataQuery->execute();
+$addressData = $addressDataQuery->fetch(PDO::FETCH_ASSOC);
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stripe_secret_key = $_ENV['STRIPE_SECRET_KEY'];
@@ -67,32 +82,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </section>
 
     <!-- Order Form -->
-    <form method="POST">
+    <div>
         <div class="flex justify-between gap-20 pt-5 border-t m-20">
             <!-- Delivery Information -->
-            <div class="flex flex-col gap-4 w-1/2">
+            <form id="postForm" class="flex flex-col gap-4 w-1/2">
                 <div class="text-xl sm:text-2xl my-3 text-sky-600 font-semibold">
                     <h2>DELIVERY INFORMATION</h2>
                 </div>
                 <div class="flex gap-3">
-                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full" type="text" placeholder="First name" />
-                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full" type="text" placeholder="Last name" />
+                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50" type="text" name="first_name" placeholder="First name" value="<?php echo $addressData['first_name'] ?? ''; ?>" />
+                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50" type="text" name="last_name" placeholder="Last name" value="<?php echo $addressData['last_name'] ?? ''; ?>" />
                 </div>
-                <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full" type="email" placeholder="Email address" />
-                <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full" type="text" placeholder="Street" />
+                <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50" type="text" name="street" placeholder="Street" value="<?php echo $addressData['street'] ?? ''; ?>" />
                 <div class="flex gap-3">
-                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full" type="text" placeholder="City" />
-                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full" type="text" placeholder="State" />
+                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50" type="text" name="city" placeholder="City" value="<?php echo $addressData['city'] ?? ''; ?>" />
+                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50" type="text" name="state" placeholder="State" value="<?php echo $addressData['state'] ?? ''; ?>" />
                 </div>
                 <div class="flex gap-3">
-                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full" type="number" placeholder="Zip code" />
-                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full" type="text" placeholder="Country" />
+                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50" type="number" name="zip_code" placeholder="Zip code" value="<?php echo $addressData['zip_code'] ?? ''; ?>" />
+                    <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50" type="text" name="country" placeholder="Country" value="<?php echo $addressData['country'] ?? ''; ?>" />
                 </div>
-                <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full" type="number" placeholder="Phone" />
-            </div>
+                <input class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50" type="number" name="phone" placeholder="Phone" value="<?php echo $addressData['phone'] ?? ''; ?>" />
+                <div class="flex gap-5 items-center w-full text-start">
+                    <button type="submit" name="submit" class="bg-sky-500 text-white px-5 py-3 text-sm font-semibold rounded-md">Add Address</button>
+                    <!-- Message -->
+                    <h1 class="text-sky-500 font-semibold text-lg text-center" id="show"></h1>
+                </div>
+            </form>
 
             <!-- Cart Total and Payment Method -->
-            <div class="flex flex-col items-start gap-6 mt-8 w-1/3">
+            <form method='POST' class="flex flex-col items-start gap-6 mt-8 w-1/3">
                 <div class="w-full p-4 border-2 border-sky-400 bg-sky-100/50 rounded-lg">
                     <h2 class="text-2xl font-bold pb-3 text-sky-600">CART TOTALS</h2>
                     <div class="text-lg text-slate-700 space-y-2">
@@ -124,18 +143,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="payment-cod" class="text-gray-500 text-sm font-medium mx-4">CASH ON DELIVERY</label>
                         </div>
                     </div>
-                    <div class="w-full text-start mt-8">
-                        <button type="submit" class="bg-red-500 text-white px-8 py-3 text-sm font-semibold rounded-md">PLACE ORDER</button>
+                    <div class="flex gap-5 items-center w-full text-start mt-8">
+                        <button type="submit" name="submit" class="bg-red-500 text-white px-8 py-3 text-sm font-semibold rounded-md">PLACE ORDER</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 
     <!-- footer -->
     <?php include_once '../includes/footer.php' ?>
 
     <script src="../layout/js/script.js"></script>
+    <script>
+        document.getElementById('postForm').addEventListener('submit', postName);
+
+        function postName(e) {
+            e.preventDefault();
+
+            let formData = new FormData(document.getElementById('postForm'));
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'add_delivery_address.php', true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(this.responseText);
+                    document.getElementById('show').innerHTML = this.responseText;
+                } else {
+                    console.error('Error in form submission');
+                }
+            };
+
+            xhr.send(formData);
+        }
+    </script>
 </body>
 
 </html>
