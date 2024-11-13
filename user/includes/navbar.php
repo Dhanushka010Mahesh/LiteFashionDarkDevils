@@ -1,5 +1,11 @@
 <?php
 session_start();
+//require(dirname(dirname(__FILE__))."./config.php");
+//require('./user/includes/config.php');
+
+$cartCount=$connection->query("select count(*) as numOfCloth from cart where CustermerId='{$_SESSION['custormerId']}'");
+$cartCount->execute();
+$numOfCart=$cartCount->fetch(PDO::FETCH_OBJ);
 ?>
 <section
     id="header"
@@ -35,7 +41,7 @@ session_start();
             </a>
 
             <?php if (isset($_SESSION['email'])) : ?>
-                <a href="http://localhost/LiteFashionDarkDevils/user/pages/cart.php"><i class="fa-solid fa-cart-shopping hover:text-sky-400"></i></a>
+                <a href="http://localhost/LiteFashionDarkDevils/user/pages/cart.php"><i class="fa-solid fa-cart-shopping hover:text-sky-400"><span style="color: red;"><?php echo  $numOfCart->numOfCloth; ?></span></i></a>
             <?php endif; ?>
         </div>
     </div>

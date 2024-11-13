@@ -232,10 +232,21 @@
                 // Disable the add to cart button and change its text
                 btnInsert.innerHTML = "<i class='addCss'></i>Added to Cart";
                 btnInsert.disabled = true;
+                //LoadRef();
             })
             .catch(error => console.error("Fetch error:", error));
         });
     });
+    function LoadRef() {
+  fetch("single_product.php")
+    .then(response => response.text())
+    .then(html => {
+      document.body.innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Error loading content:', error);
+    });
+}
 </script>
 
 </body>
