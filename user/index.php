@@ -1,18 +1,18 @@
 <?php
-  require_once ('./includes/config.php');
+require_once('./includes/config.php');
 ?>
 <?php
-  $categories1=$connection->query("select * from clothProduct where P_status='1' and P_categoryId='C001'");
-  $categories1->execute();
-  $menCloth=$categories1->fetchAll(PDO::FETCH_OBJ);
+$categories1 = $connection->query("select * from clothProduct where P_status='1' and P_categoryId='C001' LIMIT 4");
+$categories1->execute();
+$menCloth = $categories1->fetchAll(PDO::FETCH_OBJ);
 
-  $categories2=$connection->query("select * from clothProduct where P_status='1' and P_categoryId='C002'");
-  $categories2->execute();
-  $womenCloth=$categories2->fetchAll(PDO::FETCH_OBJ);
+$categories2 = $connection->query("select * from clothProduct where P_status='1' and P_categoryId='C002' LIMIT 4");
+$categories2->execute();
+$womenCloth = $categories2->fetchAll(PDO::FETCH_OBJ);
 
-  $categories3=$connection->query("select * from clothProduct where P_status='1' and P_categoryId='C003'");
-  $categories3->execute();
-  $kidsCloth=$categories3->fetchAll(PDO::FETCH_OBJ);
+$categories3 = $connection->query("select * from clothProduct where P_status='1' and P_categoryId='C003' LIMIT 4");
+$categories3->execute();
+$kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
 ?>
 
 
@@ -94,116 +94,116 @@
     </div>
   </section>
 
-  
 
-  <!-- feature products section -->
+
+  <!-- men products section -->
   <section id="feature-products" class="py-8 px-20 mt-5">
-    <h2 class="text-5xl font-bold">Men Category</h2>
-    <p class="text-lg text-slate-500">Summer Collection New Modern Design</p> 
+    <h2 class="text-5xl font-bold  text-center">Men Category</h2>
+    <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
     <div class="flex justify-between py-5 flex-wrap">
-        <?php foreach($menCloth as $men) : ?>
+      <?php foreach ($menCloth as $men) : ?>
         <div
-        class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
-        onclick="window.location.href='./pages/single_product.php?id=<?php echo ($men->ProductId);?>'" >
-        <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $men->P_image1; ?>" alt="" />
-        <div class="flex justify-between py-3 relative">
-          <div class="px-2">
-            <span class="text-lg text-slate-500">adidas</span>
-            <p class="text-xl font-bold"><?php echo $men->P_name; ?></p>
-            <div class="text-yellow-400 text-sm">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <p class="text-red-400 font-bold"><?php echo $men->P_price; ?></p>
-          </div>
-          <div>
-            <a href="#">
-              <div
-                class="h-11 w-11 bg-slate-200 rounded-full flex items-center justify-center absolute right-2 bottom-4">
-                <i
-                  class="fa-solid fa-cart-arrow-down text-xl text-sky-500"></i>
+          class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
+          onclick="window.location.href='./pages/single_product.php?id=<?php echo ($men->ProductId); ?>'">
+          <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $men->P_image1; ?>" alt="" />
+          <div class="flex justify-between py-3 relative">
+            <div class="px-2">
+              <span class="text-lg text-slate-500">adidas</span>
+              <p class="text-xl font-bold"><?php echo $men->P_name; ?></p>
+              <div class="text-yellow-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
               </div>
-            </a>
+              <p class="text-red-400 font-bold"><?php echo $men->P_price; ?></p>
+            </div>
+            <div>
+              <a href="#">
+                <div
+                  class="h-11 w-11 bg-slate-200 rounded-full flex items-center justify-center absolute right-2 bottom-4">
+                  <i
+                    class="fa-solid fa-cart-arrow-down text-xl text-sky-500"></i>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-          </div>   
-      <?php endforeach; ?> 
+      <?php endforeach; ?>
     </div>
   </section>
 
-  <!-- feature products section -->
-  <section id="feature-products" class="py-8 px-20 mt-5">
-    <h2 class="text-5xl font-bold">Women Category</h2>
-    <p class="text-lg text-slate-500">Summer Collection New Modern Design</p> 
+  <!-- women products section -->
+  <section id="feature-products" class="py-8 px-20 mt-5">  text-center
+    <h2 class="text-5xl font-bold  text-center">Women Category</h2>
+    <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
     <div class="flex justify-between py-5 flex-wrap">
-        <?php foreach($womenCloth as $women) : ?>
+      <?php foreach ($womenCloth as $women) : ?>
         <div
-        class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
-        onclick="window.location.href='./pages/single_product.php?id=<?php echo ($women->ProductId);?>'" >
-        <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $women->P_image1; ?>" alt="" />
-        <div class="flex justify-between py-3 relative">
-          <div class="px-2">
-            <span class="text-lg text-slate-500">adidas</span>
-            <p class="text-xl font-bold"><?php echo $women->P_name; ?></p>
-            <div class="text-yellow-400 text-sm">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <p class="text-red-400 font-bold"><?php echo $women->P_price; ?></p>
-          </div>
-          <div>
-            <a href="#">
-              <div
-                class="h-11 w-11 bg-slate-200 rounded-full flex items-center justify-center absolute right-2 bottom-4">
-                <i
-                  class="fa-solid fa-cart-arrow-down text-xl text-sky-500"></i>
+          class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
+          onclick="window.location.href='./pages/single_product.php?id=<?php echo ($women->ProductId); ?>'">
+          <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $women->P_image1; ?>" alt="" />
+          <div class="flex justify-between py-3 relative">
+            <div class="px-2">
+              <span class="text-lg text-slate-500">adidas</span>
+              <p class="text-xl font-bold"><?php echo $women->P_name; ?></p>
+              <div class="text-yellow-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
               </div>
-            </a>
+              <p class="text-red-400 font-bold"><?php echo $women->P_price; ?></p>
+            </div>
+            <div>
+              <a href="#">
+                <div
+                  class="h-11 w-11 bg-slate-200 rounded-full flex items-center justify-center absolute right-2 bottom-4">
+                  <i
+                    class="fa-solid fa-cart-arrow-down text-xl text-sky-500"></i>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-          </div>   
-      <?php endforeach; ?> 
+      <?php endforeach; ?>
     </div>
   </section>
 
-  <!-- feature products section -->
+  <!-- kids products section -->
   <section id="feature-products" class="py-8 px-20 mt-5">
-    <h2 class="text-5xl font-bold">Kids Category</h2>
-    <p class="text-lg text-slate-500">Summer Collection New Modern Design</p> 
+    <h2 class="text-5xl font-bold  text-center">Kids Category</h2>
+    <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
     <div class="flex justify-between py-5 flex-wrap">
-        <?php foreach($kidsCloth as $kids) : ?>
+      <?php foreach ($kidsCloth as $kids) : ?>
         <div
-        class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
-        onclick="window.location.href='./pages/single_product.php?id=<?php echo ($kids->ProductId);?>'" >
-        <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $kids->P_image1; ?>" alt="" />
-        <div class="flex justify-between py-3 relative">
-          <div class="px-2">
-            <span class="text-lg text-slate-500">adidas</span>
-            <p class="text-xl font-bold"><?php echo $kids->P_name; ?></p>
-            <div class="text-yellow-400 text-sm">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <p class="text-red-400 font-bold"><?php echo $kids->P_price; ?></p>
-          </div>
-          <div>
-            <a href="#">
-              <div
-                class="h-11 w-11 bg-slate-200 rounded-full flex items-center justify-center absolute right-2 bottom-4">
-                <i
-                  class="fa-solid fa-cart-arrow-down text-xl text-sky-500"></i>
+          class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
+          onclick="window.location.href='./pages/single_product.php?id=<?php echo ($kids->ProductId); ?>'">
+          <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $kids->P_image1; ?>" alt="" />
+          <div class="flex justify-between py-3 relative">
+            <div class="px-2">
+              <span class="text-lg text-slate-500">adidas</span>
+              <p class="text-xl font-bold"><?php echo $kids->P_name; ?></p>
+              <div class="text-yellow-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
               </div>
-            </a>
+              <p class="text-red-400 font-bold"><?php echo $kids->P_price; ?></p>
+            </div>
+            <div>
+              <a href="#">
+                <div
+                  class="h-11 w-11 bg-slate-200 rounded-full flex items-center justify-center absolute right-2 bottom-4">
+                  <i
+                    class="fa-solid fa-cart-arrow-down text-xl text-sky-500"></i>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-          </div>   
-      <?php endforeach; ?> 
+      <?php endforeach; ?>
     </div>
   </section>
 
@@ -217,7 +217,7 @@
         Up to <span>60% Off</span> - All Fashions
       </h2>
       <a
-        href="pages/list_products.html"
+        href="http://localhost/LiteFashionDarkDevils/user/pages/list_products.php"
         class="py-2 px-4 border-2 font-semibold rounded-md hover:text-sky-400 hover:bg-white/90">
         Explore More
       </a>

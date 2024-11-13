@@ -42,7 +42,7 @@ try {
 
                 try {
                     $resend->emails->send([
-                        'from' => 'charith@zhake.live',
+                        'from' => 'litefashion@zhake.live',
                         'to' => [$email],
                         'subject' => 'Account Verification - Your OTP Code',
                         'html' => '<strong>Your OTP Code is: ' . $otpCode . '</strong>',

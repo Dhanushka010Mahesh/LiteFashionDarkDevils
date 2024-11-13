@@ -1,4 +1,4 @@
-// sidebar click events using JQuery
+/******  sidebar click events using JQuery ******/
 $(document).ready(function () {
   $('#add-product-link').click(function (event) {
     event.preventDefault();
@@ -43,7 +43,7 @@ $(document).ready(function () {
   // });
 });
 
-// code for content change
+/******  content change ******/
 function showContent(contentId) {
   // Hide all content sections
   const allContent = document.querySelectorAll('.content');

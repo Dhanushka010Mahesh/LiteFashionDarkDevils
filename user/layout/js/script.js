@@ -1,4 +1,4 @@
-/* single product page image change method */
+/******** single product page image change method **********/
 const mainImage = document.getElementById('main-image');
 const smallImages = document.querySelectorAll('.small-image');
 
@@ -8,8 +8,8 @@ smallImages.forEach((smallImage) => {
   });
 });
 
-/* popup */
+/******** login popup **********/
 function popup() {
   const dropdownMenu = document.getElementById('dropdownMenu');
   dropdownMenu.classList.toggle('hidden');
-} 
+}

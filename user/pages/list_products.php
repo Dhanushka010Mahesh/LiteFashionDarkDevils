@@ -44,7 +44,7 @@ include_once('../includes/header.php');
           <button class="filter-btn w-full text-center font-bold text-left p-2 rounded-md text-gray-800 bg-gray-200 hover:bg-gray-300" data-category="all">All</button>
 
           <?php
-          
+
           $categories = $connection->query("
         SELECT DISTINCT c.CategoryId, c.C_name
         FROM clothProduct p
@@ -89,7 +89,7 @@ include_once('../includes/header.php');
             <div class="mt-4">
               <span class="block text-gray-600"><?php echo $product['P_categoryId']; ?></span>
               <h3 class="text-lg font-semibold"><?php echo $product['P_name']; ?></h3>
-              <p class="text-red-400 font-bold">$<?php echo $product['P_price']; ?></p>
+              <p class="text-red-400 font-bold">Rs. <?php echo $product['P_price']; ?></p>
             </div>
           </div>
         <?php endforeach; ?>
@@ -102,35 +102,36 @@ include_once('../includes/header.php');
 
   <script src="../layout/js/script.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const searchInput = document.getElementById("search-input");
-      const categoryButtons = document.querySelectorAll(".filter-btn");
-      const sortOptions = document.getElementById("sort-options");
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('search-input');
+      const categoryButtons = document.querySelectorAll('.filter-btn');
+      const sortOptions = document.getElementById('sort-options');
 
-      function fetchProducts(queryParams = "") {
+      function fetchProducts(queryParams = '') {
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", `fetch_products.php?${queryParams}`, true);
+        xhr.open('GET', `fetch_products.php?${queryParams}`, true);
         xhr.onload = function() {
           if (this.status === 200) {
-            document.getElementById("products-container").innerHTML = this.responseText;
+            document.getElementById('products-container').innerHTML =
+              this.responseText;
           }
         };
         xhr.send();
       }
 
-      searchInput.addEventListener("input", () => {
+      searchInput.addEventListener('input', () => {
         const searchTerm = searchInput.value;
         fetchProducts(`search=${searchTerm}`);
       });
 
-      categoryButtons.forEach(button => {
-        button.addEventListener("click", () => {
-          const category = button.getAttribute("data-category");
+      categoryButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const category = button.getAttribute('data-category');
           fetchProducts(`category=${category}`);
         });
       });
 
-      sortOptions.addEventListener("change", () => {
+      sortOptions.addEventListener('change', () => {
         const sortOrder = sortOptions.value;
         fetchProducts(`sortOrder=${sortOrder}`);
       });
