@@ -223,6 +223,27 @@ if (isset($_GET['id'])) {
             console.log("Server response:", data); 
             alert("Product added to cart");
 
+<<<<<<< HEAD
+                // Disable the add to cart button and change its text
+                btnInsert.innerHTML = "<i class='addCss'></i>Added to Cart";
+                btnInsert.disabled = true;
+                //LoadRef();
+            })
+            .catch(error => console.error("Fetch error:", error));
+        });
+    });
+    function LoadRef() {
+  fetch("single_product.php")
+    .then(response => response.text())
+    .then(html => {
+      document.body.innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Error loading content:', error);
+    });
+}
+</script>
+=======
             // Disable the add to cart button and change its text
             btnInsert.innerHTML = "<i class='addCss'></i>Added to Cart";
             btnInsert.disabled = true;
@@ -231,6 +252,7 @@ if (isset($_GET['id'])) {
       });
     });
   </script>
+>>>>>>> 7a5223b5cd2efda2a529275a0057ddc73ecfdccc
 
 </body>
 

@@ -2,6 +2,7 @@
     "require": {
         "vlucas/phpdotenv": "^5.6",
         "resend/resend-php": "^0.14.0",
-        "stripe/stripe-php": "^15.10"
+        "stripe/stripe-php": "^16.2"
+
     }
 }

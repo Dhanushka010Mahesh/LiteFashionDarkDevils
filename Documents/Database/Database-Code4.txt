@@ -1,0 +1,4 @@
+ALTER TABLE `customers`
+ADD `otp_code` VARCHAR(10) DEFAULT NULL,
+ADD `is_verified` TINYINT(1) DEFAULT 0;
+
