@@ -14,21 +14,16 @@
             </li>
             <li class="mb-3 bg-emerald-700 rounded-lg text-center">
                 <a
-                    href="#product-list"
-                    id="product-list-link"
-                    class="hover:bg-gray-700 p-2 rounded-lg block">Product List</a>
+                href="#product-list"
+                id="product-list-link"
+                class="hover:bg-gray-700 p-2 rounded-lg block">Product List</a>
             </li>
+    
             <li class="mb-3 bg-emerald-700 rounded-lg text-center">
                 <a
                     href="#order-list"
                     id="order-list-link"
                     class="hover:bg-gray-700 p-2 rounded-lg block">Order List</a>
-            </li>
-            <li class="mb-3 bg-emerald-700 rounded-lg text-center">
-                <a
-                    href="#feedback"
-                    id="feedback-link"
-                    class="hover:bg-gray-700 p-2 rounded-lg block">Feedback</a>
             </li>
             <li class="mb-2 bg-emerald-700 rounded-lg text-center">
                 <a

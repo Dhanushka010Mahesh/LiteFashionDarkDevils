@@ -21,13 +21,6 @@ $(document).ready(function () {
     );
   });
 
-  $('#feedback-link').click(function (event) {
-    event.preventDefault();
-    $('#content-container').load(
-      'http://localhost/LiteFashionDarkDevils/admin/pages/feedback.php'
-    );
-  });
-
   $('#report-link').click(function (event) {
     event.preventDefault();
     $('#content-container').load(

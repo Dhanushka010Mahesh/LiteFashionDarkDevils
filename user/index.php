@@ -105,7 +105,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
         <div
           class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
           onclick="window.location.href='./pages/single_product.php?id=<?php echo ($men->ProductId); ?>'">
-          <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $men->P_image1; ?>" alt="" />
+          <img src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $men->P_image1; ?>" alt="" />
           <div class="flex justify-between py-3 relative">
             <div class="px-2">
               <span class="text-lg text-slate-500">adidas</span>
@@ -134,7 +134,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
   </section>
 
   <!-- women products section -->
-  <section id="feature-products" class="py-8 px-20 mt-5">  text-center
+  <section id="feature-products" class="py-8 px-20 mt-5">
     <h2 class="text-5xl font-bold  text-center">Women Category</h2>
     <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
     <div class="flex justify-between py-5 flex-wrap">
@@ -142,7 +142,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
         <div
           class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
           onclick="window.location.href='./pages/single_product.php?id=<?php echo ($women->ProductId); ?>'">
-          <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $women->P_image1; ?>" alt="" />
+          <img src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $women->P_image1; ?>" alt="" />
           <div class="flex justify-between py-3 relative">
             <div class="px-2">
               <span class="text-lg text-slate-500">adidas</span>
@@ -179,7 +179,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
         <div
           class="w-[23%] min-w-64 py-2 px-3 border-2 rounded-md shadow-md mt-4 mx-0 cursor-pointer hover:shadow-xl"
           onclick="window.location.href='./pages/single_product.php?id=<?php echo ($kids->ProductId); ?>'">
-          <img src="http://localhost/LiteFashionDarkDevils/user/layout/images/products/<?php echo $kids->P_image1; ?>" alt="" />
+          <img src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $kids->P_image1; ?>" alt="" />
           <div class="flex justify-between py-3 relative">
             <div class="px-2">
               <span class="text-lg text-slate-500">adidas</span>

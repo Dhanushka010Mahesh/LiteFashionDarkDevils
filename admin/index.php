@@ -16,15 +16,15 @@
 <body class="flex justify-center bg-gray-100">
     <div class="popup-contentLog bg-white rounded-xl shadow-lg w-1/3 my-10">
         <div class="p-10 space-y-4">
- <!-- Tab Navigation -->
-<div class="flex justify-center space-x-6 rounded-xl">
-    <button id="loginTab" class="tab-button text-sm font-semibold text-gray-800 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 py-3 px-6 transition-all duration-300">
-        Sign In
-    </button>
-    <button id="signupTab" class="tab-button text-sm font-semibold text-gray-800 border-b-2 border-transparent hover:border-gray-500 hover:text-gray-500 py-3 px-6 transition-all duration-300">
-        Sign Up
-    </button>
-</div>
+            <!-- Tab Navigation -->
+            <div class="flex justify-center space-x-6 rounded-xl">
+                <button id="loginTab" class="tab-button text-sm font-semibold text-gray-800 border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 py-3 px-6 transition-all duration-300">
+                    Sign In
+                </button>
+                <button id="signupTab" class="tab-button text-sm font-semibold text-gray-800 border-b-2 border-transparent hover:border-gray-500 hover:text-gray-500 py-3 px-6 transition-all duration-300">
+                    Sign Up
+                </button>
+            </div>
 
 
             <!-- Login Form -->
@@ -97,8 +97,6 @@
     </div>
 
     <script>
-        // Toggle forms
-
         document.getElementById('loginTab').addEventListener('click', () => {
             document.getElementById('loginForm').classList.remove('hidden');
             document.getElementById('signupForm').classList.add('hidden');

@@ -1,14 +1,16 @@
 <?php
 
+require_once 'auth_check.php';
+
 require_once 'includes/config.php';
 
 try {
-    // SQL query total products
+    // total products
     $sqlProducts = "SELECT COUNT(*) FROM clothproduct";
     $stmtProducts = $connection->query($sqlProducts);
     $totalProducts = $stmtProducts->fetchColumn();
 
-    // SQL query total customers
+    // total customers
     $sqlCustomers = "SELECT COUNT(*) FROM customers";
     $stmtCustomers = $connection->query($sqlCustomers);
     $totalCustomers = $stmtCustomers->fetchColumn();
@@ -54,7 +56,7 @@ try {
                             </svg>
                             Profile
                         </a>
-                        <a href="http://localhost/LiteFashionDarkDevils/admin/pages/logout.php" class="flex items-center px-4 py-2 text-gray-700 hover:text-red-600 transition-colors duration-200">
+                        <a href="http://localhost/LiteFashionDarkDevils/admin/pages/backend/logout.php" class="flex items-center px-4 py-2 text-gray-700 hover:text-red-600 transition-colors duration-200">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>

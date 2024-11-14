@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        // Check if the email already exists
         $checkEmailQuery = "SELECT email FROM admins WHERE email = :email";
         $stmt = $connection->prepare($checkEmailQuery);
         $stmt->bindParam(':email', $email);
@@ -20,10 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->rowCount() > 0) {
             echo "An account with this email already exists. Please try logging in or use a different email.";
         } else {
-            // Password hashing
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            // Insert the data into the admins table
             $sql = "INSERT INTO admins (full_name, username, email, password) 
                     VALUES (:fullName, :userName, :email, :password)";
             $stmt = $connection->prepare($sql);
@@ -43,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        // Query to fetch admin data
         $sql = "SELECT * FROM admins WHERE email = :email";
         $stmt = $connection->prepare($sql);
         $stmt->bindParam(':email', $email);

@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once '../auth_check.php';
 require_once '../includes/config.php';
 
 $allUserData = [];
