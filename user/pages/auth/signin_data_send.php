@@ -21,7 +21,7 @@ try {
 
             $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
 
-            $sql = "SELECT * FROM customers WHERE C_email = :email AND is_verified = 1";
+            $sql = "SELECT * FROM customers WHERE C_email = :email AND is_verified = 1 and C_status='1'";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':email', $email);
             $stmt->execute();
@@ -30,13 +30,11 @@ try {
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if (password_verify($password, $user['C_hashpassword'])) {
-                    $_SESSION['username'] = $user['C_username'];
-                    $_SESSION['email'] = $user['C_email'];
-                    $_SESSION['mobile'] = $user['C_mobile'];
-                    $_SESSION['address'] = $user['C_address'];
-                    $_SESSION['image'] = $user['C_image'];
-                    $_SESSION['custormerId'] = $user['CustermerId'];
-                    $_SESSION['full_name'] = $user['C_fullname'];
+                    $_SESSION['cus_username'] = $user['C_username'];
+                    $_SESSION['cus_email'] = $user['C_email'];
+                    $_SESSION['cus_image'] = $user['C_image'];
+                    $_SESSION['cus_Id'] = $user['CustermerId'];
+                    $_SESSION['cus_fullname'] = $user['C_fullname'];
 
                     if (isset($_POST['remember'])) {
                         setcookie('user_email', $email, time() + (86400 * 30), "/");

@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php'; //compsite install
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
 $dotenv->load();
@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p><strong>Message:</strong></p>
             <p>$message</p>"
   ]);
+
 }
 ?>
 
@@ -96,11 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p class="text-lg text-slate-700">LEAVE A MESSAGE</p>
         <h2 class="text-4xl font-bold pb-5">Let us know what you need</h2>
       </div>
-      <form id="postForm" class="space-y-2">
+      <form id="postForm" class="space-y-2" action="contact.php" method="POST">
         <div>
           <label for="name" class="block mb-1 font-medium text-gray-900">Your Name</label>
           <input
             type="text"
+            id="clearName"
             name="name"
             class="mb-4 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2"
             placeholder="Alex Martin"
@@ -110,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label for="email" class="block mb-1 font-medium text-gray-900">Your email</label>
           <input
             type="email"
+            id="clearEmail"clearName clearEmail clearSubject
             name="email"
             class="mb-4 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2"
             placeholder="name@gmail.com"
@@ -119,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label for="subject" class="block mb-1 font-medium text-gray-900">Subject</label>
           <input
             type="text"
+            id="clearSubject"
             name="subject"
             class="mb-4 block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500"
             placeholder="Let us know how we can help you"
@@ -128,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label for="message" class="block mb-1 font-medium text-gray-900">Your message</label>
           <textarea
             name="message"
+            id="clearMessage"
             rows="6"
             class="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 mb-4"
             placeholder="Leave a comment..."></textarea>
@@ -166,6 +171,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       xhr.onload = function() {
         if (xhr.status === 200) {
           document.getElementById('show').innerHTML = 'Message sent successfully';
+          document.getElementById('clearName').value = '';   
+          document.getElementById('clearEmail').value = '';
+          document.getElementById('clearSubject').value = '';
+          document.getElementById('clearMessage').value = '';
+        
         } else {
           console.error('Error in form submission');
         }

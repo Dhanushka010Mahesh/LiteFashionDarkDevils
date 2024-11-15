@@ -41,6 +41,7 @@ if (isset($_GET['id'])) {
   $reletedCloth->execute();
   $allReletedCloth = $reletedCloth->fetchAll(PDO::FETCH_OBJ);
 } else {
+
 }
 
 ?>
@@ -57,8 +58,8 @@ if (isset($_GET['id'])) {
 
   <?php
   if (isset($_GET['id'])) {
-    if (isset($_SESSION['custormerId'])) {
-      $isCartAdded = $connection->query("select * from cart where ProductId='{$_GET['id']}' and CustermerId='{$_SESSION['custormerId']}'");
+    if (isset($_SESSION['cus_Id'])) {
+      $isCartAdded = $connection->query("select * from cart where ProductId='{$_GET['id']}' and CustermerId='{$_SESSION['cus_Id']}'");
       $isCartAdded->execute();
     }
   }
@@ -97,14 +98,14 @@ if (isset($_GET['id'])) {
     <!-- details -->
     <div class="w-[50%]">
       <p class="text-sm text-slate-600 font-semibold pt-5 pb-3">
-        Classic T-Shirt
+        <?php echo ($oneClothData->P_categoryId); ?>
       </p>
       <p class="text-5xl font-bold"><?php echo $oneClothData->P_name; ?></p>
       <h2 class="text-3xl font-bold pb-3 text-red-600">Rs. <?php echo $oneClothData->P_price; ?></h2>
       <form method="POST" id="form-data">
 
         <input class="form-control" type="hidden" name="P_id" value="<?php echo $oneClothData->ProductId; ?>" required><br>
-        <input class="form-control" type="hidden" name="U_id" value="<?php echo ((isset($_SESSION['username'])) ? $_SESSION['custormerId'] : ''); ?>" required><br>
+        <input class="form-control" type="hidden" name="U_id" value="<?php echo ((isset($_SESSION['cus_username'])) ? $_SESSION['cus_Id'] : ''); ?>" required><br>
         <input class="form-control" type="hidden" name="P_name" value="<?php echo $oneClothData->P_name; ?>" required><br>
         <input class="form-control" type="hidden" name="P_price" value="<?php echo $oneClothData->P_price; ?>" required><br>
         <input class="form-control" type="hidden" name="P_image" value="<?php echo $oneClothData->P_image1; ?>" required><br>
@@ -126,7 +127,7 @@ if (isset($_GET['id'])) {
         </select>
         <input type="number" name="P_qty" value="<?php echo $oneClothData->P_quantity; ?>"
           class="form-control w-12 focus:outline-none border-slate-400 rounded-sm border-2 p-1 mr-3" required />
-        <?php if (isset($_SESSION['username'])) : ?>
+        <?php if (isset($_SESSION['cus_username'])) : ?>
           <?php if ($isCartAdded->rowCount() > 0) : ?>
 
             <button class="btn-insert py-2 px-5 bg-sky-500 text-white rounded-sm" type="submit" name="submit" disabled>Added to Cart</button>
@@ -159,7 +160,7 @@ if (isset($_GET['id'])) {
           <img src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $reletedCloth->P_image1; ?>" alt="" />
           <div class="flex justify-between py-3 relative">
             <div class="px-2">
-              <span class="text-lg text-slate-500">adidas</span>
+              <span class="text-lg text-slate-500"><?php echo ($reletedCloth->P_categoryId); ?></span>
               <p class="text-xl font-bold"><?php echo $reletedCloth->P_name; ?></p>
               <div class="text-yellow-400 text-sm">
                 <i class="fa-solid fa-star"></i>
@@ -223,7 +224,6 @@ if (isset($_GET['id'])) {
             console.log("Server response:", data); 
             alert("Product added to cart");
 
-<<<<<<< HEAD
                 // Disable the add to cart button and change its text
                 btnInsert.innerHTML = "<i class='addCss'></i>Added to Cart";
                 btnInsert.disabled = true;
@@ -243,16 +243,7 @@ if (isset($_GET['id'])) {
     });
 }
 </script>
-=======
-            // Disable the add to cart button and change its text
-            btnInsert.innerHTML = "<i class='addCss'></i>Added to Cart";
-            btnInsert.disabled = true;
-          })
-          .catch(error => console.error("Fetch error:", error));
-      });
-    });
-  </script>
->>>>>>> 7a5223b5cd2efda2a529275a0057ddc73ecfdccc
+
 
 </body>
 

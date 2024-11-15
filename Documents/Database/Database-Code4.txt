@@ -2,3 +2,62 @@ ALTER TABLE `customers`
 ADD `otp_code` VARCHAR(10) DEFAULT NULL,
 ADD `is_verified` TINYINT(1) DEFAULT 0;
 
+CREATE TABLE admins (
+  admin_id varchar(15) PRIMARY KEY,
+  full_name varchar(200) NOT NULL,
+  username varchar(40) NOT NULL UNIQUE,
+  email varchar(100) NOT NULL UNIQUE,
+  password varchar(255) NOT NULL
+);
+
+DELIMITER //
+CREATE TRIGGER before_insert_admins
+BEFORE INSERT ON admins
+FOR EACH ROW
+BEGIN
+   DECLARE next_id INT;
+   SET next_id = (SELECT IFNULL(MAX(CAST(SUBSTRING(admin_id, 2) AS UNSIGNED)), 0) + 1 FROM admins);
+   SET NEW.admin_id = CONCAT('A', LPAD(next_id, 2, '0'));
+END;
+//
+DELIMITER ;
+
+
+
+CREATE TABLE orders (
+    OrderId VARCHAR(15) PRIMARY KEY,
+    CustomerId VARCHAR(15),
+    O_fullName VARCHAR(100),
+    O_emailAddress VARCHAR(100), 
+    O_street VARCHAR(100),
+    O_city VARCHAR(50),
+    O_province VARCHAR(30),
+    O_zip_code VARCHAR(20),
+    O_country VARCHAR(30) DEFAULT 'Sri Lanka',
+    O_phone_number VARCHAR(15),
+    O_payment_method VARCHAR(25) DEFAULT 'Cash on Delivery',
+    O_status VARCHAR(30) DEFAULT 'Send to Admin',
+    FOREIGN KEY (CustomerId) REFERENCES customers(CustermerId)
+);
+DELIMITER //
+CREATE TRIGGER before_insert_orders
+BEFORE INSERT ON orders
+FOR EACH ROW
+BEGIN
+   DECLARE next_id INT;
+   SET next_id = (SELECT IFNULL(MAX(CAST(SUBSTRING(OrderId, 2) AS UNSIGNED)), 0) + 1 FROM orders);
+   SET NEW.OrderId = CONCAT('ORD', LPAD(next_id, 2, '0'));
+END;
+//
+DELIMITER ;
+
+
+
+
+
+
+INSERT INTO admins (full_name, username, email, password) 
+VALUES ('Dhanushka', 'D0123', 'Mahesh404dhanushka2024ms@gmail.com', '4567'),
+('Mahesh', 'M0123', 'mahesh1226dhanushka@gmail.com', '1234');
+
+

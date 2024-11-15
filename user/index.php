@@ -22,6 +22,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="http://localhost/LiteFashionDarkDevils/user/layout/images/lite_fashion.png" />
   <title>Lite Fashion</title>
   <link
     rel="stylesheet"
@@ -46,7 +47,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
     <h1 class="text-6xl font-semibold text-sky-500">Across All Products</h1>
     <p>Maximize your savings with coupons and huge discounts!</p>
     <a
-      href="pages/list_products.php"
+      href="http://localhost/LiteFashionDarkDevils/user/pages/list_products.php"
       class="flex justify-start shop-button text-sky-500 hover:text-sky-400 font-semibold cursor-pointer mt-5">
       Shop Now
     </a>
@@ -99,7 +100,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
   <!-- men products section -->
   <section id="feature-products" class="py-8 px-20 mt-5">
     <h2 class="text-5xl font-bold  text-center">Men Category</h2>
-    <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
+    <p class="text-lg text-slate-500  text-center">Timeless, versatile, and stylish – explore our collection of men's clothing designed for every occasion. From casual comfort to polished formals, we've got you covered.</p>
     <div class="flex justify-between py-5 flex-wrap">
       <?php foreach ($menCloth as $men) : ?>
         <div
@@ -108,7 +109,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
           <img src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $men->P_image1; ?>" alt="" />
           <div class="flex justify-between py-3 relative">
             <div class="px-2">
-              <span class="text-lg text-slate-500">adidas</span>
+              <span class="text-lg text-slate-500"><?php echo ($men->ProductId); ?></span>
               <p class="text-xl font-bold"><?php echo $men->P_name; ?></p>
               <div class="text-yellow-400 text-sm">
                 <i class="fa-solid fa-star"></i>
@@ -119,7 +120,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
               <p class="text-red-400 font-bold"><?php echo $men->P_price; ?></p>
             </div>
             <div>
-              <a href="#">
+              <a href="<?php echo LocalhostPath; ?>/pages/cart.php">
                 <div
                   class="h-11 w-11 bg-slate-200 rounded-full flex items-center justify-center absolute right-2 bottom-4">
                   <i
@@ -136,7 +137,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
   <!-- women products section -->
   <section id="feature-products" class="py-8 px-20 mt-5">
     <h2 class="text-5xl font-bold  text-center">Women Category</h2>
-    <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
+    <p class="text-lg text-slate-500  text-center">Celebrate your style with our elegant and trendy women's clothing. Discover a range of outfits perfect for work, play, and everything in between.</p>
     <div class="flex justify-between py-5 flex-wrap">
       <?php foreach ($womenCloth as $women) : ?>
         <div
@@ -145,7 +146,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
           <img src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $women->P_image1; ?>" alt="" />
           <div class="flex justify-between py-3 relative">
             <div class="px-2">
-              <span class="text-lg text-slate-500">adidas</span>
+              <span class="text-lg text-slate-500"><?php echo ($women->ProductId); ?></span>
               <p class="text-xl font-bold"><?php echo $women->P_name; ?></p>
               <div class="text-yellow-400 text-sm">
                 <i class="fa-solid fa-star"></i>
@@ -156,7 +157,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
               <p class="text-red-400 font-bold"><?php echo $women->P_price; ?></p>
             </div>
             <div>
-              <a href="#">
+              <a href="<?php echo LocalhostPath; ?>/pages/cart.php">
                 <div
                   class="h-11 w-11 bg-slate-200 rounded-full flex items-center justify-center absolute right-2 bottom-4">
                   <i
@@ -173,7 +174,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
   <!-- kids products section -->
   <section id="feature-products" class="py-8 px-20 mt-5">
     <h2 class="text-5xl font-bold  text-center">Kids Category</h2>
-    <p class="text-lg text-slate-500  text-center">Summer Collection New Modern Design</p>
+    <p class="text-lg text-slate-500  text-center">Adorable, comfortable, and durable – our kids' clothing is crafted for fun and adventure. Let your little ones shine with playful designs they'll love.</p>
     <div class="flex justify-between py-5 flex-wrap">
       <?php foreach ($kidsCloth as $kids) : ?>
         <div
@@ -182,7 +183,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
           <img src="http://localhost/LiteFashionDarkDevils/admin/uploads/<?php echo $kids->P_image1; ?>" alt="" />
           <div class="flex justify-between py-3 relative">
             <div class="px-2">
-              <span class="text-lg text-slate-500">adidas</span>
+              <span class="text-lg text-slate-500"><?php echo ($kids->ProductId); ?></span>
               <p class="text-xl font-bold"><?php echo $kids->P_name; ?></p>
               <div class="text-yellow-400 text-sm">
                 <i class="fa-solid fa-star"></i>
@@ -193,7 +194,7 @@ $kidsCloth = $categories3->fetchAll(PDO::FETCH_OBJ);
               <p class="text-red-400 font-bold"><?php echo $kids->P_price; ?></p>
             </div>
             <div>
-              <a href="#">
+              <a href="<?php echo LocalhostPath; ?>/pages/cart.php">
                 <div
                   class="h-11 w-11 bg-slate-200 rounded-full flex items-center justify-center absolute right-2 bottom-4">
                   <i

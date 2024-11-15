@@ -1,0 +1,154 @@
+
+SELECT * FROM customers WHERE C_email = 'php@gmail.com' AND is_verified = 1 and C_status='1'
+
+ALTER TABLE customers
+DROP COLUMN C_address;
+
+
+ALTER TABLE customers
+CHANGE COLUMN C_firstName C_username VARCHAR(50);
+
+ALTER TABLE customers
+ADD COLUMN C_street VARCHAR(60),
+ADD COLUMN C_city VARCHAR(60),
+ADD COLUMN C_zipCode VARCHAR(20),
+ADD COLUMN C_province VARCHAR(50);
+
+select C_fullname,C_email,C_street,C_city,C_province,C_zipCode,C_mobile from customers where C_status='1' and CustermerId='U001';
+
+update customers set C_street='N0 5 Talpe' , C_city='Galle' , C_province='South' , C_zipCode='2025' , C_mobile='0777123456' where CustermerId='U003';
+
+alter table cart
+ADD COLUMN status_items VARCHAR(15) default 'Pending';
+select * from cart where CustermerId='U002' and status_items='Pending'
+
+CREATE TABLE orders (
+    OrderId VARCHAR(15) PRIMARY KEY,
+    CustomerId VARCHAR(15),
+    O_fullName VARCHAR(100),
+    O_emailAddress VARCHAR(100), 
+    O_street VARCHAR(100),
+    O_city VARCHAR(50),
+    O_province VARCHAR(30),
+    O_zip_code VARCHAR(20),
+    O_country VARCHAR(30) DEFAULT 'Sri Lanka',
+    O_phone_number VARCHAR(15),
+    O_payment_method VARCHAR(25) DEFAULT 'Cash on Delivery',
+    O_status VARCHAR(30) DEFAULT 'Send to Admin',
+    FOREIGN KEY (CustomerId) REFERENCES customers(CustermerId)
+);
+
+INSERT INTO orders (OrderId, CustomerId, O_fullName, O_emailAddress, O_street, O_city, O_province, O_zip_code, O_phone_number)
+VALUES ('ORD001', 'U001', 'John Doe', 'john@example.com', '123 Main St', 'Colombo', 'Western', '10000', '0771234567');
+
+
+DELIMITER //
+
+CREATE TRIGGER after_order_insert
+AFTER INSERT ON orders
+FOR EACH ROW
+BEGIN
+    DECLARE maxId INT;
+    DECLARE formattedId VARCHAR(10);
+
+    -- Get the maximum existing numeric part of OrderId
+    SELECT COALESCE(MAX(CAST(SUBSTRING(OrderId, 4) AS UNSIGNED)), 0) INTO maxId FROM orders;
+
+    -- Generate the new formatted OrderId
+    SET formattedId = CONCAT('ORD', LPAD(maxId + 1, 3, '0'));
+
+    -- Update the new row with the generated OrderId
+    UPDATE orders
+    SET OrderId = formattedId
+    WHERE OrderId IS NULL AND CustomerId = NEW.CustomerId AND O_fullName = NEW.O_fullName;
+END;
+//
+
+DELIMITER ;
+
+
+SET SQL_SAFE_UPDATES = 0;
+delete from orders
+SET SQL_SAFE_UPDATES = 1;
+
+DROP TRIGGER IF EXISTS before_insert_order;
+DROP TRIGGER IF EXISTS after_order_insert;
+DROP TABLE IF EXISTS orders;
+
+
+
+-- Step 1: Create the 'orders' table without auto-increment for OrderId
+CREATE TABLE orders (
+    OrderId VARCHAR(15) PRIMARY KEY, -- Removed auto-increment here
+    CustomerId VARCHAR(15),
+    O_fullName VARCHAR(100),
+    O_emailAddress VARCHAR(100), 
+    O_street VARCHAR(100),
+    O_city VARCHAR(50),
+    O_province VARCHAR(30),
+    O_zip_code VARCHAR(20),
+    O_country VARCHAR(30) DEFAULT 'Sri Lanka',
+    O_phone_number VARCHAR(15),
+    O_payment_method VARCHAR(25) DEFAULT 'Cash on Delivery',
+    O_status VARCHAR(30) DEFAULT 'Send to Admin',
+    FOREIGN KEY (CustomerId) REFERENCES customers(CustermerId)
+);
+
+-- Step 2: Create the trigger to generate formatted OrderId after insertion
+DELIMITER //
+
+CREATE TRIGGER after_order_insert
+AFTER INSERT ON orders
+FOR EACH ROW
+BEGIN
+    DECLARE formattedId VARCHAR(15);
+
+    -- Generate the formatted OrderId (e.g., ORD0001, ORD0002)
+    SET formattedId = CONCAT('ORD', LPAD(LAST_INSERT_ID(), 4, '0'));
+
+    -- Update the OrderId column with the formatted ID
+    UPDATE orders
+    SET OrderId = formattedId
+    WHERE OrderId = (SELECT OrderId FROM orders WHERE CustomerId = NEW.CustomerId ORDER BY OrderId DESC LIMIT 1);
+END;
+//
+
+DELIMITER ;
+
+
+DROP TRIGGER IF EXISTS before_insert_orders;
+DELIMITER //
+CREATE TRIGGER before_insert_orders
+BEFORE INSERT ON orders
+FOR EACH ROW
+BEGIN
+   DECLARE next_id INT;
+   -- Get the maximum order ID and increment it by 1
+   SET next_id = (SELECT IFNULL(MAX(CAST(SUBSTRING(OrderId, 4) AS UNSIGNED)), 0) + 1 FROM orders);
+   -- Generate the new OrderId by padding the next_id with leading zeros
+   SET NEW.OrderId = CONCAT('ORD', LPAD(next_id, 2, '0'));
+END;
+//
+DELIMITER ;
+
+INSERT INTO orders (CustomerId, O_fullName, O_emailAddress, O_street, O_city, O_province, O_zip_code, O_phone_number)
+VALUES 
+('U004', 'Alice Brown', 'alice.b@example.com', '456 Maple St', 'Kandy', 'Central', '20000', '0787654322');
+
+DROP TRIGGER IF EXISTS before_insert_orders;
+DELIMITER //
+CREATE TRIGGER before_insert_orders
+BEFORE INSERT ON orders
+FOR EACH ROW
+BEGIN
+   DECLARE next_id INT;
+   -- Get the maximum order ID and increment it by 1
+   SET next_id = (SELECT IFNULL(MAX(CAST(SUBSTRING(OrderId, 4) AS UNSIGNED)), 0) + 1 FROM orders);
+   -- Generate the new OrderId by padding the next_id with leading zeros to ensure 4 digits
+   SET NEW.OrderId = CONCAT('ORD', LPAD(next_id, 4, '0'));
+END;
+//
+DELIMITER ;
+INSERT INTO orders (CustomerId, O_fullName, O_emailAddress, O_street, O_city, O_province, O_zip_code, O_phone_number)
+VALUES 
+('U005', 'Emily Davis', 'emily.d@example.com', '321 Birch Rd', 'Negombo', 'Western', '40000', '0717654324');

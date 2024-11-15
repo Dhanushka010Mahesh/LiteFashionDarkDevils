@@ -14,11 +14,16 @@ require_once('../includes/config.php');
 
   <?php
 
-  if (!isset($_SESSION['username'])) {
+  if(isset($_POST['tps_data_submit'])){
+    $_SESSION['total_price_cart']=$_POST['tps_data'];
+    echo "<script> window.location.href='http://localhost/LiteFashionDarkDevils/user/pages/place_order.php'; </script>";
+  }
+
+  if (!isset($_SESSION['cus_email'])) {
     echo "<script> window.location.href='http://localhost/LiteFashionDarkDevils/user/'; </script>";
   }
 
-  $cartItems = $connection->query("select * from cart where CustermerId='{$_SESSION['custormerId']}'");
+  $cartItems = $connection->query("select * from cart where CustermerId='{$_SESSION['cus_Id']}' and status_items='Pending' ");
   $cartItems->execute();
 
   $allCartItems = $cartItems->fetchAll(PDO::FETCH_OBJ);
@@ -75,23 +80,29 @@ require_once('../includes/config.php');
             <p>Subtotal</p>
             <p class="full_price">Rs.0.00</p>
           </div>
+          <?php if (count($allCartItems) > 0) : ?>
           <div class="flex justify-between">
             <p>Shipping</p>
-            <p>Free</p>
+            <p>RS : 250.00</p>
           </div>
           <div class="flex justify-between my-4">
             <p class="font-semibold">Total</p>
-            <p class="font-semibold">Rs.0.00</p>
+            <p class="totalCostWithShipping font-semibold">Rs.0.00</p>
+            
           </div>
-          <!-- <button class="bg-red-500 text-white py-2 px-6 rounded-md mt-8">
-              Proceed to Checkout
-            </button> -->
-          <a
-            href="place_order.php"
-            class="bg-red-500 text-white py-3 px-6 rounded-md mt-8">
-            Proceed to Checkout
-          </a>
-        </div>
+          <form action="cart.php" method="POST">
+              <input type="text" hidden name="tps_data" class="totalPriceSession" ><br>
+              <!-- <button class="bg-red-500 text-white py-2 px-6 rounded-md mt-8">
+                  Proceed to Checkout
+                </button> -->
+              
+              <button
+                class="bg-red-500 text-white py-3 px-6 rounded-md mt-8" name="tps_data_submit">
+                Proceed to Checkout
+              </button>
+              <?php endif; ?>
+            </div>
+        </form>
       </div>
     </div>
   </section>
@@ -123,7 +134,7 @@ require_once('../includes/config.php');
           const container = this.closest('div');
           const proQty = container.querySelector('.pro_qty').value;
 
-          fetch("cart_update.php", {
+          fetch("./auth/cart_update.php", {
               method: "POST",
               headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -146,7 +157,7 @@ require_once('../includes/config.php');
           button.addEventListener('click', function(e) {
             const id = this.value;
 
-            fetch("cart_delete.php", {
+            fetch("./auth/cart_delete.php", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/x-www-form-urlencoded"
@@ -181,6 +192,14 @@ require_once('../includes/config.php');
 
           // Update the content of the element with the class 'full_price'
           document.querySelector('.full_price').textContent = 'RS .' + sum.toFixed(2);
+
+          //save input tag value data for save session
+          document.querySelector('.totalPriceSession').value=sum.toFixed(2);
+          //$('.totalPriceSession').val(sum); JQuary
+
+          
+          document.querySelector('.totalCostWithShipping').textContent = (sum + 250).toFixed(2);
+
         }, 4000);
       }
 
