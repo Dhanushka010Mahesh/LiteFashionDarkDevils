@@ -1,0 +1,80 @@
+
+delete from orders where OrderId='ORD0005'
+
+CREATE TABLE order_items (
+    OrderId VARCHAR(15),
+    CartId VARCHAR(15),
+    qty INT,
+    PRIMARY KEY (OrderId, CartId),
+    FOREIGN KEY (OrderId) REFERENCES orders(OrderId),
+    FOREIGN KEY (CartId) REFERENCES cart(S_cartId)
+);
+
+delete from order_items where OrderId='ORD0001' and CartId='S0015';
+
+
+INSERT INTO order_items (OrderId, CartId, qty) SELECT OrderId,S_cartId, S_qty FROM cart as c , orders as o WHERE c.status_items = 'Pending' and o.O_status='Send to Admin' AND o.CustomerId = 'U005' AND c.CustermerId = 'U005';
+
+
+UPDATE cart SET status_items = 'Ordering' WHERE status_items = 'Pending' AND CustermerId = 'U005';
+
+delete from order_items where OrderId='ORD0001';
+UPDATE cart SET status_items = 'Pending' WHERE status_items = 'Ordering' AND CustermerId = 'U005';
+
+
+
+//not used yet
+//not used yet
+//not used yet
+ALTER TABLE order_items
+DROP FOREIGN KEY order_items_ibfk_1;
+
+ALTER TABLE order_items
+ADD CONSTRAINT order_items_ibfk_1
+FOREIGN KEY (OrderId) REFERENCES orders(OrderId)
+ON DELETE CASCADE;
+
+//not used yet
+//not used yet
+//not used yet
+
+DROP TABLE IF EXISTS order_items;
+
+
+
+
+
+CREATE TABLE order_items (
+    OrderItemsId VARCHAR(15) PRIMARY KEY,    
+    OrderId VARCHAR(15),
+    CartId VARCHAR(15),
+    qty INT,
+    FOREIGN KEY (OrderId) REFERENCES orders(OrderId) ON DELETE CASCADE,
+    FOREIGN KEY (CartId) REFERENCES cart(S_cartId) ON DELETE CASCADE
+);
+DELIMITER //
+
+CREATE TRIGGER before_insert_order_items
+BEFORE INSERT ON order_items
+FOR EACH ROW
+BEGIN
+    DECLARE new_id VARCHAR(15);
+    DECLARE max_id INT;
+    
+    -- Find the maximum existing ID, extract the numeric part, and increment it
+    SELECT MAX(CAST(SUBSTRING(OrderItemsId, 4) AS UNSIGNED)) INTO max_id
+    FROM order_items;
+
+    -- If no previous entries, start from 1
+    IF max_id IS NULL THEN
+        SET new_id = CONCAT('SAL', LPAD(1, 5, '0'));
+    ELSE
+        SET new_id = CONCAT('SAL', LPAD(max_id + 1, 5, '0'));
+    END IF;
+
+    -- Set the generated ID for the new row
+    SET NEW.OrderItemsId = new_id;
+END//
+
+DELIMITER ;
+

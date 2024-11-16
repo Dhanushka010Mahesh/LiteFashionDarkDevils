@@ -3,7 +3,7 @@
     define("LocalhostPath","http://localhost/LiteFashionDarkDevils/user"); //ctrl + h all text replace
     require dirname(__DIR__) . '/includes/config.php';
     if(isset($_SESSION['cus_Id'])){
-        $cartCount=$connection->query("select count(*) as numOfCloth from cart where CustermerId='{$_SESSION['cus_Id']}'");
+        $cartCount=$connection->query("select count(*) as numOfCloth from cart where status_items='Pending' and CustermerId='{$_SESSION['cus_Id']}'");
         $cartCount->execute();
         $numOfCart=$cartCount->fetch(PDO::FETCH_OBJ);
     }

@@ -65,11 +65,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </li>
           <li class="flex py-2 items-center gap-5">
             <i class="fa-solid fa-envelope"></i>
-            <p>+94 81 123 4567</p>
+            <p>litefashion256@gmail.com</p>
           </li>
           <li class="flex py-2 items-center gap-5">
             <i class="fa-solid fa-phone"></i>
-            <p>info@lite_fashion.lk</p>
+            <p>+94 766640384</p>
           </li>
           <li class="flex py-2 items-center gap-5">
             <i class="fa-solid fa-clock"></i>

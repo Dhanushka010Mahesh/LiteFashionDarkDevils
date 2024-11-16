@@ -100,7 +100,7 @@ if (!isset($_SESSION['cus_username'])) {
                         </div>
                         <div class="flex justify-between">
                             <span>Shipping</span>
-                            <span>RS : 150.00</span>
+                            <span>RS : 250.00</span>
                         </div>
                         <div class="flex justify-between font-semibold mt-2">
                             <span>Total</span>
