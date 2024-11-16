@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (password_verify($password, $admin['password'])) {
                 $_SESSION['admin_id'] = $admin['admin_id'];
                 $_SESSION['admin_name'] = $admin['username'];
-                $_SESSION['email'] = $admin['email'];
+                $_SESSION['admin_email'] = $admin['email'];
 
                 header("Location: http://localhost/LiteFashionDarkDevils/admin/dashboard.php");
                 exit();

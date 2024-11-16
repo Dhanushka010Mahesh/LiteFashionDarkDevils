@@ -4,6 +4,8 @@ require_once '../includes/config.php';
 
 $allUserData = [];
 
+  
+
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +16,11 @@ $allUserData = [];
 
 <body>
   <?php
-  if (isset($_SESSION['email'])) {
+  if (isset($_SESSION['admin_email'])) {
 
     try {
       $userData = $connection->prepare("SELECT * FROM admins WHERE email = :email");
-      $userData->bindParam(':email', $_SESSION['email'], PDO::PARAM_STR);
+      $userData->bindParam(':email', $_SESSION['admin_email'], PDO::PARAM_STR);
       $userData->execute();
 
       $allUserData = $userData->fetchAll(PDO::FETCH_OBJ);

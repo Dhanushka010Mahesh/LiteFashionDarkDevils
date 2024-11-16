@@ -1,5 +1,12 @@
 <?php
 require_once '../auth_check.php';
+require('../includes/config.php');
+
+  $OrdersList = $connection->query("select * from orders");
+  $OrdersList->execute();
+  $allOrderList = $OrdersList->fetchAll(PDO::FETCH_OBJ);
+
+  
 ?>
 
 
@@ -48,34 +55,41 @@ require_once '../auth_check.php';
             </tr>
           </thead>
           <tbody id="order-table-body">
-            <tr>
-              <td class="border px-4 py-2">101</td>
-              <td class="border px-4 py-2">John Doe</td>
-              <td class="border px-4 py-2">Rs. 150.00</td>
-              <td class="border px-4 py-2">
-                <select
-                  class="bg-blue-500 text-white font-semibold py-1.5 px-3 rounded cursor-pointer focus:outline-none">
-                  <option value="processing" selected>Processing</option>
-                  <option value="shipped" class="text-white">Shipped</option>
-                  <option value="delivered" class="text-white">
-                    Delivered
-                  </option>
-                </select>
-              </td>
+            <?php foreach($allOrderList as $getOrdersList) : ?>
+                        <tr>
+                          <td class="border px-4 py-2"><?php echo $getOrdersList->OrderId; ?></td>
+                          <td class="border px-4 py-2"><?php echo $getOrdersList->O_fullName; ?></td>
+                          <td class="border px-4 py-2">Rs. 150.00</td>
+                          <td class="border px-4 py-2">
+                            <select
+                              class="bg-blue-500 text-white font-semibold py-1.5 px-3 rounded cursor-pointer focus:outline-none">
+                              <option value="processing" selected><?php echo $getOrdersList->O_status; ?></option>
+                              <option value="shipped" class="text-white">Procesing</option>
+                              <option value="delivered" class="text-white">
+                                Delivered
+                              </option>
+                            </select>
+                          </td>
 
-              <td class="border px-4 py-2">
-                <button
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
-                  onclick="showContent('editContent')">
-                  View
-                </button>
-                <button
-                  class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded ml-2"
-                  onclick="cancelOrder(101)">
-                  Cancel
-                </button>
-              </td>
-            </tr>
+                          <td class="border px-4 py-2">
+               
+                                <button
+                                  value="<?php echo $getOrdersList->OrderId; ?>"
+                                  class="dataEditSubmit bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
+                                  onclick="showContent('editContent')"> <!--onclick="showContent('editContent'); " -->
+                                  View
+                                </button>
+
+                                <button
+                                  name="dataDeleteSubmit"
+                                  class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded ml-2"
+                                  onclick="cancelOrder(101)">
+                                  Cancel
+                                </button>
+ 
+                          </td>
+                        </tr>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>
@@ -84,6 +98,12 @@ require_once '../auth_check.php';
 
   <!-- Edit Section -->
   <div id="editContent" class="content container mx-auto pb-4 px-4">
+    <?php 
+      if(isset($_POST['update'])){
+        echo "<script> alert('Good'); </script>";
+      } 
+    
+    ?>
     <div class="container mx-auto pb-8 ml-6">
       <!-- Customer Details Section -->
       <h2 class="text-2xl font-bold text-gray-800 mb-4">Customer Details</h2>
@@ -187,10 +207,43 @@ require_once '../auth_check.php';
       const allContent = document.querySelectorAll('.content');
       allContent.forEach((content) => content.classList.remove('active'));
 
-      // Show the selected content section
-      const selectedContent = document.getElementById(contentId);
-      selectedContent.classList.add('active');
+              // Show the selected content section
+              const selectedContent = document.getElementById(contentId);
+              selectedContent.classList.add('active');
     }
+
+    // document.querySelectorAll('.dataEditSubmit').forEach(input => {
+    //   input.addEventListener('Click', () => {
+                
+    //       document.querySelectorAll('.dataEditSubmit').forEach(button => {
+    //           button.replaceWith(button.cloneNode(true));
+    //       });
+
+    //       document.querySelectorAll('.dataEditSubmit').forEach(button => {
+    //         button.addEventListener('click', function(e) {
+    //             const id = this.value;
+    //             const container = this.closest('td');
+
+    //             fetch("order_list.php", {
+    //                   method: "POST",
+    //                   headers: {
+    //                     "Content-Type": "application/x-www-form-urlencoded"
+    //                   },
+    //                   body: `update=update&id=${id}`
+    //             })
+    //             .then(response => response.text())
+    //               .then(data => {
+    //                   alert("Updated");
+    //                   showContent('editContent');
+    //             })
+    //             .catch(error => {
+    //                   alert('Error');
+    //             });
+                
+    //         });   
+    //       }); 
+    //   });
+    // });
   </script>
 </body>
 
