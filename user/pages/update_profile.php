@@ -3,7 +3,7 @@ include_once '../includes/config.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $customerId = $_SESSION['custormerId'];
+    $customerId = $_SESSION['cus_Id'];
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
     $phone = $_POST['phone'];

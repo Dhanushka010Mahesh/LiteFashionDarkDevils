@@ -83,7 +83,7 @@ require_once('../includes/config.php');
           <?php if (count($allCartItems) > 0) : ?>
           <div class="flex justify-between">
             <p>Shipping</p>
-            <p>RS : 250.00</p>
+            <p>Free</p>
           </div>
           <div class="flex justify-between my-4">
             <p class="font-semibold">Total</p>
@@ -198,7 +198,7 @@ require_once('../includes/config.php');
           //$('.totalPriceSession').val(sum); JQuary
 
           
-          document.querySelector('.totalCostWithShipping').textContent = (sum + 250).toFixed(2);
+          document.querySelector('.totalCostWithShipping').textContent = (sum).toFixed(2);
 
         }, 4000);
       }

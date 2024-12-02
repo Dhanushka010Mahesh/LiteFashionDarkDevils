@@ -59,12 +59,12 @@ require('../includes/config.php');
                         <tr>
                           <td class="border px-4 py-2"><?php echo $getOrdersList->OrderId; ?></td>
                           <td class="border px-4 py-2"><?php echo $getOrdersList->O_fullName; ?></td>
-                          <td class="border px-4 py-2">Rs. 150.00</td>
+                          <td class="border px-4 py-2">Rs. 6650.00</td>
                           <td class="border px-4 py-2">
                             <select
                               class="bg-blue-500 text-white font-semibold py-1.5 px-3 rounded cursor-pointer focus:outline-none">
                               <option value="processing" selected><?php echo $getOrdersList->O_status; ?></option>
-                              <option value="shipped" class="text-white">Procesing</option>
+                              <option value="shipped" class="text-white">Processing</option>
                               <option value="delivered" class="text-white">
                                 Delivered
                               </option>
@@ -111,27 +111,27 @@ require('../includes/config.php');
       <div class="grid grid-cols-2 gap-4 pt-2">
         <div>
           <p class="font-bold text-gray-700">Customer ID</p>
-          <p id="customerId" class="text-gray-600">C123</p>
+          <p id="customerId" class="text-gray-600">U003</p>
         </div>
         <div>
           <p class="font-bold text-gray-700">Username</p>
-          <p id="customerUsername" class="text-gray-600">john_doe</p>
+          <p id="customerUsername" class="text-gray-600">charith</p>
         </div>
         <div>
           <p class="font-bold text-gray-700">Full Name</p>
-          <p id="customerFullName" class="text-gray-600">John Doe</p>
+          <p id="customerFullName" class="text-gray-600">Charith wickramasinghe</p>
         </div>
         <div>
           <p class="font-bold text-gray-700">Email</p>
-          <p id="customerEmail" class="text-gray-600">johndoe@example.com</p>
+          <p id="customerEmail" class="text-gray-600">charith.wickz@gmail.com</p>
         </div>
         <div>
           <p class="font-bold text-gray-700">Mobile</p>
-          <p id="customerMobile" class="text-gray-600">123456789</p>
+          <p id="customerMobile" class="text-gray-600">0112501610</p>
         </div>
         <div>
           <p class="font-bold text-gray-700">Address</p>
-          <p id="customerAddress" class="text-gray-600">123 Main St, City</p>
+          <p id="customerAddress" class="text-gray-600">123, city , Kandy</p>
         </div>
       </div>
     </div>
@@ -150,9 +150,7 @@ require('../includes/config.php');
               <th class="py-3 px-4 bg-gray-800 text-white text-left">
                 Product ID
               </th>
-              <th class="py-3 px-4 bg-gray-800 text-white text-left">
-                Product Image
-              </th>
+              
               <th class="py-3 px-4 bg-gray-800 text-white text-left">
                 Product Name
               </th>
@@ -171,19 +169,24 @@ require('../includes/config.php');
           <tbody>
             <!-- Sample Product Row -->
             <tr class="border-b border-gray-200">
-              <td class="py-4 px-4">ORD001</td>
-              <td class="py-4 px-4">PROD001</td>
-              <td class="py-4 px-4">
-                <img
-                  src="path_to_product_image.jpg"
-                  alt="Product Image"
-                  class="w-12 h-12 rounded object-cover" />
-              </td>
-              <td class="py-4 px-4">Product Name 1</td>
-              <td class="py-4 px-4">2</td>
+              <td class="py-4 px-4">ORD0001</td>
+              <td class="py-4 px-4">P001</td>
+              
+              <td class="py-4 px-4">Men's Alan T-Shirt</td>
+              <td class="py-4 px-4">1</td>
+              <td class="py-4 px-4">S</td>
+              <td class="py-4 px-4">Rs. 3250</td>
+              <td class="py-4 px-4">Rs. 3250</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-4 px-4">ORD0001</td>
+              <td class="py-4 px-4">P002</td>
+              
+              <td class="py-4 px-4">Men's Casual Coat</td>
+              <td class="py-4 px-4">1</td>
               <td class="py-4 px-4">M</td>
-              <td class="py-4 px-4">Rs. 25.00</td>
-              <td class="py-4 px-4">Rs. 50.00</td>
+              <td class="py-4 px-4">Rs. 3400</td>
+              <td class="py-4 px-4">Rs. 3400</td>
             </tr>
           </tbody>
           <tfoot>
@@ -193,7 +196,7 @@ require('../includes/config.php');
                 class="py-3 px-4 text-right font-semibold text-gray-800">
                 Total Amount:
               </td>
-              <td class="py-3 px-4 font-semibold text-gray-800">Rs. 150.00</td>
+              <td class="py-3 px-4 font-semibold text-gray-800">Rs. 6650.00</td>
             </tr>
           </tfoot>
         </table>

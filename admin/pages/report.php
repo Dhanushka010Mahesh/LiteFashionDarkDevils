@@ -18,12 +18,12 @@ require_once '../auth_check.php';
       <div class="bg-white shadow-md rounded-md p-4">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg font-bold">Total Sales:</p>
-            <p class="text-2xl text-green-600">Rs. 15,200</p>
+            <p class="text-lg font-bold">Total Sales</p>
+            <p class="text-2xl text-green-600">Rs. 6,650</p>
           </div>
           <div>
-            <p class="text-lg font-bold">Total Orders:</p>
-            <p class="text-2xl text-blue-600">120</p>
+            <p class="text-lg font-bold">Total Orders</p>
+            <p class="text-2xl text-blue-600">01</p>
           </div>
         </div>
       </div>
@@ -46,29 +46,19 @@ require_once '../auth_check.php';
 
             <tr>
               <td class="border px-4 py-2">1</td>
-              <td class="border px-4 py-2">Wireless Headphones</td>
-              <td class="border px-4 py-2">50</td>
-              <td class="border px-4 py-2">Rs. 2,500</td>
+              <td class="border px-4 py-2">Men's Alan T-Shirt</td>
+              <td class="border px-4 py-2">1</td>
+              <td class="border px-4 py-2">Rs. 3,250</td>
             </tr>
             <tr>
               <td class="border px-4 py-2">2</td>
-              <td class="border px-4 py-2">Smartwatch</td>
-              <td class="border px-4 py-2">75</td>
-              <td class="border px-4 py-2">Rs. 3,750</td>
+              <td class="border px-4 py-2">Men's Casual Coat</td>
+              <td class="border px-4 py-2">1</td>
+              <td class="border px-4 py-2">Rs. 3,400</td>
             </tr>
 
           </tbody>
         </table>
-      </div>
-    </div>
-
-    <!-- Feedback Report Section -->
-    <div class="mb-6">
-      <h2 class="text-xl font-semibold mb-3">Customer Feedback</h2>
-      <div class="bg-white shadow-md rounded-md p-4">
-        <p>Total Feedback Received: <span class="text-blue-600 font-bold">85</span></p> <!-- Placeholder -->
-        <p>Positive Feedback: <span class="text-green-600 font-bold">60</span></p> <!-- Placeholder -->
-        <p>Negative Feedback: <span class="text-red-600 font-bold">25</span></p> <!-- Placeholder -->
       </div>
     </div>
 

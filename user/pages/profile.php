@@ -12,20 +12,16 @@
 
   <?php
 
-  if (!isset($_SESSION['username'])) {
+  if (!isset($_SESSION['cus_username'])) {
     echo "<script> window.location.href='http://localhost/LiteFashionDarkDevils/user/'; </script>";
   }
 
    // Fetch customer data 
-  $userData = $connection->query("select * from customers where CustermerId='{$_SESSION['custormerId']}'");
+  $userData = $connection->query("select * from customers where CustermerId='{$_SESSION['cus_Id']}'");
   $userData->execute();
   $allUserData = $userData->fetchAll(PDO::FETCH_OBJ);
 
-  // Fetch delivery address 
-  $addressData = $connection->prepare("SELECT * FROM delivery_address WHERE CustermerId = :custermerId");
-  $addressData->bindParam(':custermerId', $_SESSION['custormerId']);
-  $addressData->execute();
-  $addressData = $addressData->fetch(PDO::FETCH_OBJ);
+
   ?>
 
   <!-- page header -->
@@ -109,83 +105,6 @@
       </ul>
     </div>
   </section>
-
-  <!-- Delivery Information -->
-  <div class="flex justify-center items-center py-10">
-    <form id="postForm2" class="flex flex-col gap-4 w-1/2 bg-white shadow-lg rounded-lg p-8">
-      <h2 class="text-3xl font-bold text-slate-800 mb-5">Update Delivery Information</h2>
-
-      <div class="flex gap-3">
-        <input
-          class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50"
-          type="text"
-          name="first_name"
-          placeholder="First name"
-          value="<?php echo isset($addressData->first_name) ? $addressData->first_name : ''; ?>" />
-        <input
-          class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50"
-          type="text"
-          name="last_name"
-          placeholder="Last name"
-          value="<?php echo isset($addressData->last_name) ? $addressData->last_name : ''; ?>" />
-      </div>
-
-      <input
-        class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50"
-        type="text"
-        name="street"
-        placeholder="Street"
-        value="<?php echo isset($addressData->street) ? $addressData->street : ''; ?>" />
-
-      <div class="flex gap-3">
-        <input
-          class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50"
-          type="text"
-          name="city"
-          placeholder="City"
-          value="<?php echo isset($addressData->city) ? $addressData->city : ''; ?>" />
-        <input
-          class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50"
-          type="text"
-          name="state"
-          placeholder="State"
-          value="<?php echo isset($addressData->state) ? $addressData->state : ''; ?>" />
-      </div>
-
-      <div class="flex gap-3">
-        <input
-          class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50"
-          type="number"
-          name="zip_code"
-          placeholder="Zip code"
-          value="<?php echo isset($addressData->zip_code) ? $addressData->zip_code : ''; ?>" />
-        <input
-          class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50"
-          type="text"
-          name="country"
-          placeholder="Country"
-          value="<?php echo isset($addressData->country) ? $addressData->country : ''; ?>" />
-      </div>
-
-      <input
-        class="border border-gray-300 rounded-md py-1.5 px-3.5 w-full bg-gray-50"
-        type="number"
-        name="phone"
-        placeholder="Phone"
-        value="<?php echo isset($addressData->phone) ? $addressData->phone : ''; ?>" />
-
-      <!-- submit -->
-      <button
-        type="submit"
-        name="submit"
-        class="block w-full py-3 px-5 text-white bg-sky-500 rounded-lg font-medium hover:bg-sky-700 transition">
-        Save Changes
-      </button>
-
-      <!-- Message -->
-      <h1 class="text-sky-500 font-semibold text-lg text-center" id="show2"></h1>
-    </form>
-  </div>
 
 
   <!-- footer -->

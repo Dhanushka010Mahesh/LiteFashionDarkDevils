@@ -147,7 +147,7 @@ if (isset($_GET['id'])) {
   <!-- related products section -->
   <section id="feature-products" class="py-8 px-20 mt-5">
     <div class="text-center">
-      <h2 class="text-5xl font-bold">Feature Products</h2>
+      <h2 class="text-5xl font-bold">Related Products</h2>
       <p class="text-lg text-slate-500">
         Summer Collection New Modern Design
       </p>

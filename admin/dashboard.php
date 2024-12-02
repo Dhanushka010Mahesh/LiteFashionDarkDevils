@@ -74,7 +74,7 @@ try {
                         </div>
                         <div class="bg-green-50 p-4 rounded-lg border border-green-100 shadow-sm">
                             <h3 class="text-green-600 font-semibold">Total Orders</h3>
-                            <p class="text-2xl font-bold text-green-600">...</p>
+                            <p class="text-2xl font-bold text-green-600">1</p>
                         </div>
                         <div class="bg-purple-50 p-4 rounded-lg border border-purple-100 shadow-sm">
                             <h3 class="text-purple-600 font-semibold">Total Customers</h3>
@@ -82,7 +82,7 @@ try {
                         </div>
                         <div class="bg-red-50 p-4 rounded-lg border border-red-100 shadow-sm">
                             <h3 class="text-red-600 font-semibold">Revenue</h3>
-                            <p class="text-2xl font-bold text-red-600">Rs. ...</p>
+                            <p class="text-2xl font-bold text-red-600">Rs. 6650</p>
                         </div>
                     </div>
 
