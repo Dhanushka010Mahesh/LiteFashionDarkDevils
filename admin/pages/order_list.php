@@ -65,8 +65,8 @@ $allOrderList = $OrdersList->fetchAll(PDO::FETCH_OBJ);
         <div class="flex justify-between items-center">
           <h2 class="text-lg font-semibold text-gray-800">Order #<?php echo $order->OrderId; ?> - <?php echo $order->O_fullName; ?></h2>
           <div class="flex space-x-2">
-            <button 
-              class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm transition" 
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm transition"
               onclick="toggleOrderDetails('details-<?php echo $order->OrderId; ?>')">
               View Details
             </button>
@@ -80,11 +80,16 @@ $allOrderList = $OrdersList->fetchAll(PDO::FETCH_OBJ);
             <p class="mb-1.5"><strong>Email:</strong> <?php echo $order->O_emailAddress; ?></p>
             <p class="mb-1.5"><strong>Phone:</strong> <?php echo $order->O_phone_number; ?></p>
             <p class="mb-1.5"><strong>Payment Method:</strong> <?php echo $order->O_payment_method; ?></p>
-            <p class="mb-1.5"><strong>Status:</strong> 
-              <span class="px-2 py-1 rounded text-white 
-              <?php echo ($order->O_status === 'Completed') ? 'bg-green-500' : 'bg-sky-500'; ?>">
-                <?php echo $order->O_status; ?>
-              </span>
+            <p class="mb-1.5"><strong>Status:</strong>
+              <select
+                class="px-2 py-1 rounded text-white cursor-pointer focus:outline-none 
+                <?php echo ($order->O_status === 'Completed') ? 'bg-green-500' : 'bg-sky-500'; ?>"
+                onchange="updateOrderStatus(<?php echo $order->OrderId; ?>, this.value)">
+                <option value="Send to Admin" <?php echo ($order->O_status === 'Send to Admin') ? 'selected' : ''; ?>>Send to Admin</option>
+                <option value="Processing" <?php echo ($order->O_status === 'Processing') ? 'selected' : ''; ?>>Processing</option>
+                <option value="Shipped" <?php echo ($order->O_status === 'Shipped') ? 'selected' : ''; ?>>Shipped</option>
+                <option value="Completed" <?php echo ($order->O_status === 'Completed') ? 'selected' : ''; ?>>Completed</option>
+              </select>
             </p>
           </div>
           <div>
@@ -100,7 +105,6 @@ $allOrderList = $OrdersList->fetchAll(PDO::FETCH_OBJ);
           <h3 class="text-md font-semibold text-gray-600 mb-4">Product Details</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="border rounded-lg p-4 flex items-center space-x-4 bg-gray-50">
-              <img src="<?php echo $order->P_image1; ?>" alt="<?php echo $order->P_name; ?>" class="w-16 h-16 rounded object-cover">
               <div>
                 <p class="font-semibold"><?php echo $order->P_name; ?></p>
                 <p class="text-sm text-gray-600"><strong>ID:</strong> <?php echo $order->ProductId; ?></p>
@@ -108,11 +112,6 @@ $allOrderList = $OrdersList->fetchAll(PDO::FETCH_OBJ);
                 <p class="text-sm text-gray-600"><strong>Quantity:</strong> <?php echo $order->order_qty; ?></p>
               </div>
             </div>
-          </div>
-          <div class="mt-4 flex space-x-2">
-            <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm transition">Edit Order</button>
-            <button class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm transition">Copy Order</button>
-            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm transition">Delete Order</button>
           </div>
         </div>
       </div>
@@ -123,6 +122,20 @@ $allOrderList = $OrdersList->fetchAll(PDO::FETCH_OBJ);
     function toggleOrderDetails(orderId) {
       const details = document.getElementById(orderId);
       details.classList.toggle('hidden');
+    }
+
+    function updateOrderStatus(orderId, status) {
+      fetch(`update_order_status.php?orderId=${orderId}&status=${status}`, {
+          method: 'GET',
+        })
+        .then(response => response.text())
+        .then(data => {
+          alert('Order status updated successfully!');
+        })
+        .catch(error => {
+          alert('Error updating order status.');
+          console.error('Error:', error);
+        });
     }
   </script>
 </body>

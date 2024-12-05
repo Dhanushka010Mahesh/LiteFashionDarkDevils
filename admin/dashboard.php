@@ -20,11 +20,14 @@ try {
     $stmtOrders = $connection->query($sqlOrders);
     $totalOrders = $stmtOrders->fetchColumn();
 
-    // total Revenue
-    $sqlRevenue = "SELECT SUM(P_price)
-    FROM cart";
-    $stmtRevenue = $connection->query($sqlRevenue);
-    $totalRevenue = $stmtRevenue->fetchColumn();
+    // total Sales
+    $sqlSales = "SELECT SUM(oi.qty * cp.P_price) AS total_sales
+FROM order_items oi
+INNER JOIN cart c ON oi.CartId = c.S_cartId
+INNER JOIN clothproduct cp ON c.ProductId = cp.ProductId";
+    $stmtSales = $connection->prepare($sqlSales);
+    $stmtSales->execute();
+    $totalSales = $stmtSales->fetchColumn();
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -92,8 +95,8 @@ try {
                             <p class="text-2xl font-bold text-purple-600"><?php echo $totalCustomers ?></p>
                         </div>
                         <div class="bg-red-50 p-4 rounded-lg border border-red-100 shadow-sm">
-                            <h3 class="text-red-600 font-semibold">Total Revenue</h3>
-                            <p class="text-2xl font-bold text-red-600">Rs. <?php echo $totalRevenue ?></p>
+                            <h3 class="text-red-600 font-semibold">Total Sales</h3>
+                            <p class="text-2xl font-bold text-red-600">Rs. <?php echo number_format($totalSales, 2) ?></p>
                         </div>
                     </div>
 
