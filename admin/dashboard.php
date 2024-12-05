@@ -14,6 +14,17 @@ try {
     $sqlCustomers = "SELECT COUNT(*) FROM customers";
     $stmtCustomers = $connection->query($sqlCustomers);
     $totalCustomers = $stmtCustomers->fetchColumn();
+
+    // total orders
+    $sqlOrders = "SELECT COUNT(*) FROM orders";
+    $stmtOrders = $connection->query($sqlOrders);
+    $totalOrders = $stmtOrders->fetchColumn();
+
+    // total Revenue
+    $sqlRevenue = "SELECT SUM(P_price)
+    FROM cart";
+    $stmtRevenue = $connection->query($sqlRevenue);
+    $totalRevenue = $stmtRevenue->fetchColumn();
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -74,15 +85,15 @@ try {
                         </div>
                         <div class="bg-green-50 p-4 rounded-lg border border-green-100 shadow-sm">
                             <h3 class="text-green-600 font-semibold">Total Orders</h3>
-                            <p class="text-2xl font-bold text-green-600">1</p>
+                            <p class="text-2xl font-bold text-green-600"><?php echo $totalOrders ?></p>
                         </div>
                         <div class="bg-purple-50 p-4 rounded-lg border border-purple-100 shadow-sm">
                             <h3 class="text-purple-600 font-semibold">Total Customers</h3>
                             <p class="text-2xl font-bold text-purple-600"><?php echo $totalCustomers ?></p>
                         </div>
                         <div class="bg-red-50 p-4 rounded-lg border border-red-100 shadow-sm">
-                            <h3 class="text-red-600 font-semibold">Revenue</h3>
-                            <p class="text-2xl font-bold text-red-600">Rs. 6650</p>
+                            <h3 class="text-red-600 font-semibold">Total Revenue</h3>
+                            <p class="text-2xl font-bold text-red-600">Rs. <?php echo $totalRevenue ?></p>
                         </div>
                     </div>
 
